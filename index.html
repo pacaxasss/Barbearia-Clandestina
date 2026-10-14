@@ -432,14 +432,15 @@
   </header>
 
   <!-- ==================== HERO SECTION: PRETO E BRANCO COM DETALHES DE BARBEARIA ==================== -->
-  <section id="home" class="min-h-[calc(100svh-4.5rem)] lg:h-screen lg:max-h-screen pt-20 lg:pt-24 pb-3 sm:pb-6 flex flex-col justify-between px-4 sm:px-6 lg:px-8 relative border-b border-neutral-800 overflow-hidden bg-[#0a0a0a]">
+  <section id="home" class="min-h-[calc(100svh-4.5rem)] lg:h-screen lg:max-h-screen pt-20 lg:pt-24 pb-8 sm:pb-10 flex flex-col justify-between px-4 sm:px-6 lg:px-8 relative border-b border-neutral-800 overflow-hidden bg-[#0a0a0a]">
 
     <!-- Contentor com Enquadramento Total sem Scroll -->
-    <div class="max-w-7xl mx-auto w-full flex-1 h-full flex flex-col justify-between relative z-10 py-1 sm:py-2">
+    <div class="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between relative z-10 py-1 sm:py-2">
       
       <!-- 1. Top Bar de Barbearia Monocromática Limpa -->
-      <div class="reveal flex items-center justify-between font-mono text-[11px] text-neutral-400 uppercase tracking-widest border-b border-neutral-800 pb-2 mb-2 sm:mb-4">
+      <div class="reveal flex items-center justify-between font-mono text-[11px] text-neutral-400 uppercase tracking-widest border-b border-neutral-800 pb-3 mb-2 sm:mb-4">
         <div class="flex items-center gap-2.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
           <span class="text-white font-bold tracking-wider">BARBEARIA CLANDESTINA</span>
           <span class="text-neutral-500">• ABRANTES</span>
         </div>
@@ -454,17 +455,17 @@
         </div>
       </div>
 
-      <!-- 2. Grid Principal Equilibrado do Hero -->
-      <div class="flex-1 flex flex-col lg:grid lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-10 justify-between lg:items-center">
+      <!-- 2. Grid Principal Equilibrado do Hero (Sem Cartões Inferiores) -->
+      <div class="flex-1 flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 items-center my-auto py-4 sm:py-8">
         
-        <!-- Lado Esquerdo: Tipografia & Ações Compactas (Puro P&B) -->
-        <div class="lg:col-span-7 flex flex-col justify-between flex-1 py-2 sm:py-4 gap-5 sm:gap-6">
+        <!-- Lado Esquerdo: Tipografia Majestosa & Ações -->
+        <div class="lg:col-span-7 flex flex-col justify-center space-y-6 sm:space-y-7 w-full">
 
           <!-- Linha de Título com Logótipo Integrado à Direita no Mobile (Círculo Vermelho) -->
-          <div class="reveal flex items-center justify-between gap-3 sm:gap-6">
-            <h1 class="font-title text-[40px] sm:text-6xl lg:text-7xl xl:text-8xl text-white tracking-tight uppercase leading-[0.92]">
+          <div class="reveal flex items-center justify-between gap-4">
+            <h1 class="font-title text-[44px] sm:text-6xl lg:text-7xl xl:text-8xl text-white tracking-tight uppercase leading-[0.92]">
               ENTRA EM <span class="text-neutral-500 hover:text-white transition-colors">MODO</span> <br>
-              <span class="font-royal text-[34px] sm:text-5xl lg:text-6xl xl:text-7xl tracking-normal inline-block mt-1 sm:mt-2">CLANDESTINO.</span>
+              <span class="font-royal text-[38px] sm:text-5xl lg:text-6xl xl:text-7xl tracking-normal inline-block mt-1 sm:mt-2 text-white">CLANDESTINO.</span>
             </h1>
 
             <!-- Logótipo Oficial no Espaço Indicado pelo Utilizador (Mobile & Tablet) -->
@@ -478,37 +479,52 @@
             </div>
           </div>
 
-          <p class="reveal text-neutral-300 text-[13.5px] sm:text-sm lg:text-base max-w-xl font-sans leading-relaxed">
+          <!-- Parágrafo Editorial de Apresentação -->
+          <p class="reveal text-neutral-300 text-sm sm:text-base lg:text-lg max-w-xl font-sans leading-relaxed">
             Fundada em 2019 no coração de Abrantes para quem exige corte cirúrgico: o zumbido magnético da máquina, o corte rente da shaver, a navalha no couro e o ritual revigorante da toalha quente aromática.
           </p>
 
+          <!-- Selos Editoriais Sutis (Pills Monocromáticas Apenas Mobile) -->
+          <div class="reveal flex lg:hidden flex-wrap items-center gap-2 pt-1 font-mono text-[10px] sm:text-xs text-neutral-400 uppercase tracking-wider">
+            <span class="px-2.5 py-1 bg-[#141414] border border-neutral-800 rounded-sm text-neutral-300 flex items-center gap-1.5">
+              <i class="fa-solid fa-scissors text-[9px] text-white"></i> Fade & Clássico
+            </span>
+            <span class="px-2.5 py-1 bg-[#141414] border border-neutral-800 rounded-sm text-neutral-300 flex items-center gap-1.5">
+              <i class="fa-solid fa-fire text-[9px] text-white"></i> Toalha Quente
+            </span>
+            <span class="px-2.5 py-1 bg-[#141414] border border-neutral-800 rounded-sm text-neutral-300 flex items-center gap-1.5">
+              <i class="fa-solid fa-certificate text-[9px] text-white"></i> Barboterapia
+            </span>
+          </div>
+
           <!-- Ações Principais Monocromáticas -->
-          <div class="reveal flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
-            <button onclick="openBookingModal('Geral')" class="interactive-el w-full sm:w-auto px-8 py-4 bg-white hover:bg-neutral-200 text-black font-title text-base sm:text-lg uppercase tracking-widest transition-all flex items-center justify-center gap-2.5 shadow-lg shadow-black/50 active:scale-95">
+          <div class="reveal flex flex-col sm:flex-row gap-3 pt-2 items-stretch sm:items-center">
+            <button onclick="openBookingModal('Geral')" class="interactive-el w-full sm:w-auto px-8 py-3.5 sm:py-4 bg-white hover:bg-neutral-200 text-black font-title text-base sm:text-lg uppercase tracking-widest transition-all flex items-center justify-center gap-2.5 shadow-xl shadow-black/50 active:scale-95 font-bold rounded-sm">
               <span>AGENDAR CADEIRA</span>
               <i class="fa-solid fa-scissors text-xs"></i>
             </button>
-            <a href="#servicos" class="interactive-el w-full sm:w-auto px-8 py-4 bg-transparent hover:bg-neutral-900 border border-neutral-700 hover:border-white text-white font-title text-base sm:text-lg uppercase tracking-widest transition-all flex items-center justify-center gap-2.5 active:scale-95" onmouseenter="sound.playRealScissors()">
+            <a href="#servicos" class="interactive-el w-full sm:w-auto px-8 py-3.5 sm:py-4 bg-transparent hover:bg-neutral-900 border border-neutral-700 hover:border-white text-white font-title text-base sm:text-lg uppercase tracking-widest transition-all flex items-center justify-center gap-2.5 active:scale-95 rounded-sm" onmouseenter="sound.playRealScissors()">
               <span>VER SERVIÇOS & PREÇOS</span>
               <i class="fa-solid fa-arrow-down text-xs"></i>
             </a>
           </div>
 
-          <!-- Métricas Integradas com Detalhes Finos Barber Pole -->
-          <div class="reveal grid grid-cols-3 gap-2.5 sm:gap-3 pt-4 border-t border-neutral-800 font-mono text-xs">
-            <div class="p-3 sm:p-3.5 rounded bg-[#121212] border-t-2 border-white border-l border-r border-b border-neutral-800 text-center sm:text-left shadow-sm">
-              <span class="font-title text-2xl sm:text-3xl text-white block leading-none">+5 ANOS</span>
-              <span class="text-[9px] sm:text-[10px] text-neutral-400 uppercase mt-1.5 block">Em Abrantes</span>
+          <!-- Métricas Integradas com Detalhes Finos (Apenas Desktop - Removidas do Mobile) -->
+          <div class="reveal hidden lg:grid grid-cols-3 gap-3 pt-3 border-t border-neutral-800 font-mono text-xs">
+            <div class="p-2.5 rounded bg-[#121212] border-t-2 border-white border-l border-r border-b border-neutral-800 text-left">
+              <span class="font-title text-2xl lg:text-3xl text-white block leading-none">+5 ANOS</span>
+              <span class="text-[10px] text-neutral-400 uppercase mt-1 block">Em Abrantes</span>
             </div>
-            <div class="p-3 sm:p-3.5 rounded bg-[#121212] border-t-2 border-white border-l border-r border-b border-neutral-800 text-center sm:text-left shadow-sm">
-              <span class="font-title text-2xl sm:text-3xl text-white block leading-none">10º CORTE</span>
-              <span class="text-[9px] sm:text-[10px] text-neutral-400 uppercase mt-1.5 block">Oferta Cartão</span>
+            <div class="p-2.5 rounded bg-[#121212] border-t-2 border-white border-l border-r border-b border-neutral-800 text-left">
+              <span class="font-title text-2xl lg:text-3xl text-white block leading-none">10º CORTE</span>
+              <span class="text-[10px] text-neutral-400 uppercase mt-1 block">Oferta Cartão</span>
             </div>
-            <div class="p-3 sm:p-3.5 rounded bg-[#121212] border-t-2 border-neutral-500 border-l border-r border-b border-neutral-800 text-center sm:text-left shadow-sm">
-              <span class="font-title text-2xl sm:text-3xl text-white block leading-none">4.9 / 5★</span>
-              <span class="text-[9px] sm:text-[10px] text-neutral-400 uppercase mt-1.5 block">+150 Avaliações</span>
+            <div class="p-2.5 rounded bg-[#121212] border-t-2 border-neutral-500 border-l border-r border-b border-neutral-800 text-left">
+              <span class="font-title text-2xl lg:text-3xl text-white block leading-none">4.9 / 5★</span>
+              <span class="text-[10px] text-neutral-400 uppercase mt-1 block">+150 Avaliações</span>
             </div>
           </div>
+
         </div>
 
         <!-- Lado Direito: Logotipo Oficial da Barbearia em Desktop (Oculto em Mobile) -->
@@ -528,6 +544,15 @@
           </div>
         </div>
 
+      </div>
+
+      <!-- 3. Bottom Bar do Hero Monocromática (Apenas Desktop - Removida do Mobile) -->
+      <div class="reveal hidden lg:flex items-center justify-between text-[10px] font-mono text-neutral-400 uppercase tracking-widest pt-2.5 border-t border-neutral-800">
+        <span class="text-neutral-400">ABRANTES • CENTRO HISTÓRICO • SEG A SÁB</span>
+        <a href="#servicos" class="hover:text-white transition-colors flex items-center gap-1.5 font-bold text-white">
+          <span>VER SERVIÇOS & PREÇOS</span>
+          <i class="fa-solid fa-chevron-down text-[8px]"></i>
+        </a>
       </div>
 
     </div>
