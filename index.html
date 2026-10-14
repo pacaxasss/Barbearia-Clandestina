@@ -432,14 +432,14 @@
   </header>
 
   <!-- ==================== HERO SECTION: PRETO E BRANCO COM DETALHES DE BARBEARIA ==================== -->
-  <section id="home" class="min-h-[calc(100svh-4.5rem)] lg:h-screen lg:max-h-screen pt-20 lg:pt-24 pb-8 sm:pb-10 flex flex-col justify-between px-4 sm:px-6 lg:px-8 relative border-b border-neutral-800 overflow-hidden bg-[#0a0a0a]">
+  <section id="home" class="min-h-[calc(100svh-4.5rem)] lg:min-h-screen pt-20 lg:pt-20 pb-20 lg:pb-6 flex flex-col justify-between px-4 sm:px-6 lg:px-8 relative border-b border-neutral-800 overflow-x-clip bg-[#0a0a0a]">
 
     <!-- Contentor com Enquadramento Total sem Scroll -->
     <div class="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between relative z-10 py-1 sm:py-2">
       
       <!-- 1. Top Bar de Barbearia Monocromática Limpa -->
-      <div class="reveal flex items-center justify-between font-mono text-[11px] text-neutral-400 uppercase tracking-widest border-b border-neutral-800 pb-3 mb-2 sm:mb-4">
-        <div class="flex items-center gap-2.5">
+      <div class="reveal flex items-center justify-between font-mono text-[10px] sm:text-[11px] text-neutral-400 uppercase tracking-widest border-b border-neutral-800 pb-2 mb-2 lg:mb-3">
+        <div class="flex items-center gap-2">
           <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
           <span class="text-white font-bold tracking-wider">BARBEARIA CLANDESTINA</span>
           <span class="text-neutral-500">• ABRANTES</span>
@@ -455,17 +455,17 @@
         </div>
       </div>
 
-      <!-- 2. Grid Principal Equilibrado do Hero (Sem Cartões Inferiores) -->
-      <div class="flex-1 flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 items-center my-auto py-4 sm:py-8">
+      <!-- 2. Grid Principal Equilibrado do Hero -->
+      <div class="flex-1 flex flex-col justify-between lg:grid lg:grid-cols-12 gap-5 lg:gap-8 xl:gap-12 items-center py-2 sm:py-3 lg:py-4 xl:py-6 my-auto lg:my-auto">
         
         <!-- Lado Esquerdo: Tipografia Majestosa & Ações -->
-        <div class="lg:col-span-7 flex flex-col justify-center space-y-6 sm:space-y-7 w-full">
+        <div class="lg:col-span-7 flex flex-col justify-between sm:justify-center space-y-4 sm:space-y-5 lg:space-y-4 xl:space-y-6 w-full flex-1 lg:flex-initial">
 
           <!-- Linha de Título com Logótipo Integrado à Direita no Mobile (Círculo Vermelho) -->
           <div class="reveal flex items-center justify-between gap-4">
-            <h1 class="font-title text-[44px] sm:text-6xl lg:text-7xl xl:text-8xl text-white tracking-tight uppercase leading-[0.92]">
+            <h1 class="font-title text-[44px] sm:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl text-white tracking-tight uppercase leading-[0.93]">
               ENTRA EM <span class="text-neutral-500 hover:text-white transition-colors">MODO</span> <br>
-              <span class="font-royal text-[38px] sm:text-5xl lg:text-6xl xl:text-7xl tracking-normal inline-block mt-1 sm:mt-2 text-white">CLANDESTINO.</span>
+              <span class="font-royal text-[38px] sm:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl tracking-normal inline-block mt-1 sm:mt-1.5 text-white">CLANDESTINO.</span>
             </h1>
 
             <!-- Logótipo Oficial no Espaço Indicado pelo Utilizador (Mobile & Tablet) -->
@@ -480,7 +480,7 @@
           </div>
 
           <!-- Parágrafo Editorial de Apresentação -->
-          <p class="reveal text-neutral-300 text-sm sm:text-base lg:text-lg max-w-xl font-sans leading-relaxed">
+          <p class="reveal text-neutral-300 text-xs sm:text-sm lg:text-sm xl:text-base max-w-xl font-sans leading-relaxed">
             Fundada em 2019 no coração de Abrantes para quem exige corte cirúrgico: o zumbido magnético da máquina, o corte rente da shaver, a navalha no couro e o ritual revigorante da toalha quente aromática.
           </p>
 
@@ -498,30 +498,62 @@
           </div>
 
           <!-- Ações Principais Monocromáticas -->
-          <div class="reveal flex flex-col sm:flex-row gap-3 pt-2 items-stretch sm:items-center">
-            <button onclick="openBookingModal('Geral')" class="interactive-el w-full sm:w-auto px-8 py-3.5 sm:py-4 bg-white hover:bg-neutral-200 text-black font-title text-base sm:text-lg uppercase tracking-widest transition-all flex items-center justify-center gap-2.5 shadow-xl shadow-black/50 active:scale-95 font-bold rounded-sm">
+          <div class="reveal flex flex-col sm:flex-row gap-3 pt-1 items-stretch sm:items-center">
+            <button onclick="openBookingModal('Geral')" class="interactive-el w-full sm:w-auto px-6 xl:px-8 py-3.5 xl:py-3.5 bg-white hover:bg-neutral-200 text-black font-title text-sm sm:text-base uppercase tracking-widest transition-all flex items-center justify-center gap-2 shadow-xl shadow-black/50 active:scale-95 font-bold rounded-sm">
               <span>AGENDAR CADEIRA</span>
               <i class="fa-solid fa-scissors text-xs"></i>
             </button>
-            <a href="#servicos" class="interactive-el w-full sm:w-auto px-8 py-3.5 sm:py-4 bg-transparent hover:bg-neutral-900 border border-neutral-700 hover:border-white text-white font-title text-base sm:text-lg uppercase tracking-widest transition-all flex items-center justify-center gap-2.5 active:scale-95 rounded-sm" onmouseenter="sound.playRealScissors()">
+            <a href="#servicos" class="interactive-el w-full sm:w-auto px-6 xl:px-8 py-3.5 xl:py-3.5 bg-transparent hover:bg-neutral-900 border border-neutral-700 hover:border-white text-white font-title text-sm sm:text-base uppercase tracking-widest transition-all flex items-center justify-center gap-2 active:scale-95 rounded-sm" onmouseenter="sound.playRealScissors()">
               <span>VER SERVIÇOS & PREÇOS</span>
               <i class="fa-solid fa-arrow-down text-xs"></i>
             </a>
           </div>
 
-          <!-- Métricas Integradas com Detalhes Finos (Apenas Desktop - Removidas do Mobile) -->
-          <div class="reveal hidden lg:grid grid-cols-3 gap-3 pt-3 border-t border-neutral-800 font-mono text-xs">
-            <div class="p-2.5 rounded bg-[#121212] border-t-2 border-white border-l border-r border-b border-neutral-800 text-left">
-              <span class="font-title text-2xl lg:text-3xl text-white block leading-none">+5 ANOS</span>
-              <span class="text-[10px] text-neutral-400 uppercase mt-1 block">Em Abrantes</span>
+          <!-- Extensão Exclusiva Mobile: Aproveitamento Total do Espaço Vertical Circundado -->
+          <div class="reveal flex lg:hidden flex-col gap-2.5 pt-3 border-t border-neutral-800/80 w-full">
+            <!-- 3 Métricas Rápidas Monocromáticas -->
+            <div class="grid grid-cols-3 gap-2 text-center font-mono">
+              <div class="py-2.5 px-1 bg-[#121212] border border-neutral-800 rounded-sm">
+                <span class="font-title text-base text-white block leading-none">+5 ANOS</span>
+                <span class="text-[8px] text-neutral-400 uppercase mt-1 block tracking-wider">Abrantes</span>
+              </div>
+              <div class="py-2.5 px-1 bg-[#121212] border border-neutral-800 rounded-sm">
+                <span class="font-title text-base text-white block leading-none">10º CORTE</span>
+                <span class="text-[8px] text-neutral-400 uppercase mt-1 block tracking-wider">Oferta</span>
+              </div>
+              <div class="py-2.5 px-1 bg-[#121212] border border-neutral-800 rounded-sm">
+                <span class="font-title text-base text-white block leading-none">4.9 / 5★</span>
+                <span class="text-[8px] text-neutral-400 uppercase mt-1 block tracking-wider">+150 Opiniões</span>
+              </div>
             </div>
-            <div class="p-2.5 rounded bg-[#121212] border-t-2 border-white border-l border-r border-b border-neutral-800 text-left">
-              <span class="font-title text-2xl lg:text-3xl text-white block leading-none">10º CORTE</span>
-              <span class="text-[10px] text-neutral-400 uppercase mt-1 block">Oferta Cartão</span>
+
+            <!-- Faixa Editorial de Morada e Horário Mobile -->
+            <div class="flex items-center justify-between px-3 py-2 bg-[#101010] border border-neutral-800 rounded-sm font-mono text-[9px] text-neutral-400 uppercase tracking-wider">
+              <span class="flex items-center gap-1.5 text-neutral-300">
+                <i class="fa-solid fa-location-dot text-white text-[9px]"></i>
+                <span>Centro Histórico</span>
+              </span>
+              <span class="text-neutral-600">•</span>
+              <span class="flex items-center gap-1.5 text-neutral-300">
+                <i class="fa-solid fa-clock text-white text-[9px]"></i>
+                <span>Seg a Sáb: 09h–19h</span>
+              </span>
             </div>
-            <div class="p-2.5 rounded bg-[#121212] border-t-2 border-neutral-500 border-l border-r border-b border-neutral-800 text-left">
-              <span class="font-title text-2xl lg:text-3xl text-white block leading-none">4.9 / 5★</span>
-              <span class="text-[10px] text-neutral-400 uppercase mt-1 block">+150 Avaliações</span>
+          </div>
+
+          <!-- Métricas Integradas com Detalhes Finos (Apenas Desktop) -->
+          <div class="reveal hidden lg:grid grid-cols-3 gap-2.5 xl:gap-3 pt-2.5 xl:pt-3 border-t border-neutral-800 font-mono text-xs">
+            <div class="p-2 xl:p-2.5 rounded bg-[#121212] border-t-2 border-white border-l border-r border-b border-neutral-800 text-left">
+              <span class="font-title text-xl xl:text-2xl text-white block leading-none">+5 ANOS</span>
+              <span class="text-[9px] xl:text-[10px] text-neutral-400 uppercase mt-1 block">Em Abrantes</span>
+            </div>
+            <div class="p-2 xl:p-2.5 rounded bg-[#121212] border-t-2 border-white border-l border-r border-b border-neutral-800 text-left">
+              <span class="font-title text-xl xl:text-2xl text-white block leading-none">10º CORTE</span>
+              <span class="text-[9px] xl:text-[10px] text-neutral-400 uppercase mt-1 block">Oferta Cartão</span>
+            </div>
+            <div class="p-2 xl:p-2.5 rounded bg-[#121212] border-t-2 border-neutral-500 border-l border-r border-b border-neutral-800 text-left">
+              <span class="font-title text-xl xl:text-2xl text-white block leading-none">4.9 / 5★</span>
+              <span class="text-[9px] xl:text-[10px] text-neutral-400 uppercase mt-1 block">+150 Avaliações</span>
             </div>
           </div>
 
@@ -531,15 +563,15 @@
         <div class="hidden lg:flex lg:col-span-5 relative justify-center lg:justify-end items-center py-2 lg:py-0">
           
           <!-- Efeito Atmosférico de Profundidade Subtil atrás do Logo -->
-          <div class="absolute w-[220px] sm:w-[340px] lg:w-[480px] xl:w-[560px] h-[220px] sm:h-[340px] lg:h-[480px] xl:h-[560px] rounded-full bg-gradient-to-tr from-white/[0.03] via-transparent to-white/[0.03] blur-3xl pointer-events-none -z-10 translate-x-3 lg:translate-x-8"></div>
+          <div class="absolute w-[220px] sm:w-[320px] lg:w-[400px] xl:w-[480px] h-[220px] sm:h-[320px] lg:h-[400px] xl:h-[480px] rounded-full bg-gradient-to-tr from-white/[0.03] via-transparent to-white/[0.03] blur-3xl pointer-events-none -z-10 translate-x-3 lg:translate-x-6"></div>
 
           <!-- Contentor Estático do Logotipo -->
-          <div class="reveal relative select-none">
+          <div class="reveal relative select-none flex items-center justify-center">
             <img
               id="hero-logo-img"
               src="assets/images/logo_semfundo.png"
               alt="Logo Barbearia Clandestina"
-              class="w-[180px] sm:w-[260px] md:w-[320px] lg:w-[460px] xl:w-[540px] 2xl:w-[620px] max-w-[75vw] lg:max-w-none h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.9)] lg:translate-x-6 xl:translate-x-10 2xl:translate-x-14 transition-all duration-500 pointer-events-none"
+              class="w-[180px] sm:w-[260px] md:w-[320px] lg:w-[360px] xl:w-[440px] 2xl:w-[520px] max-h-[38vh] lg:max-h-[46vh] xl:max-h-[54vh] max-w-[75vw] lg:max-w-none h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.9)] lg:translate-x-4 xl:translate-x-8 2xl:translate-x-12 transition-all duration-500 pointer-events-none"
             >
           </div>
         </div>
@@ -547,7 +579,7 @@
       </div>
 
       <!-- 3. Bottom Bar do Hero Monocromática (Apenas Desktop - Removida do Mobile) -->
-      <div class="reveal hidden lg:flex items-center justify-between text-[10px] font-mono text-neutral-400 uppercase tracking-widest pt-2.5 border-t border-neutral-800">
+      <div class="reveal hidden lg:flex items-center justify-between text-[10px] font-mono text-neutral-400 uppercase tracking-widest pt-2 xl:pt-2.5 border-t border-neutral-800">
         <span class="text-neutral-400">ABRANTES • CENTRO HISTÓRICO • SEG A SÁB</span>
         <a href="#servicos" class="hover:text-white transition-colors flex items-center gap-1.5 font-bold text-white">
           <span>VER SERVIÇOS & PREÇOS</span>
