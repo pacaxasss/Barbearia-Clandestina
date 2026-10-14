@@ -432,13 +432,13 @@
   </header>
 
   <!-- ==================== HERO SECTION: PRETO E BRANCO COM DETALHES DE BARBEARIA ==================== -->
-  <section id="home" class="min-h-screen lg:h-screen lg:max-h-screen pt-20 lg:pt-24 pb-4 lg:pb-6 flex flex-col justify-between px-4 sm:px-6 lg:px-8 relative border-b border-neutral-800 overflow-hidden bg-[#0a0a0a]">
+  <section id="home" class="min-h-[calc(100svh-4.5rem)] lg:h-screen lg:max-h-screen pt-20 lg:pt-24 pb-20 sm:pb-6 flex flex-col justify-between px-4 sm:px-6 lg:px-8 relative border-b border-neutral-800 overflow-hidden bg-[#0a0a0a]">
 
     <!-- Contentor com Enquadramento Total sem Scroll -->
-    <div class="max-w-7xl mx-auto w-full h-full flex flex-col justify-between relative z-10">
+    <div class="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between relative z-10 py-1 sm:py-2">
       
       <!-- 1. Top Bar de Barbearia Monocromática Limpa -->
-      <div class="reveal flex items-center justify-between font-mono text-[11px] text-neutral-400 uppercase tracking-widest border-b border-neutral-800 pb-2.5 mb-3 lg:mb-4">
+      <div class="reveal flex items-center justify-between font-mono text-[11px] text-neutral-400 uppercase tracking-widest border-b border-neutral-800 pb-2 mb-2 sm:mb-4">
         <div class="flex items-center gap-2.5">
           <span class="text-white font-bold tracking-wider">BARBEARIA CLANDESTINA</span>
           <span class="text-neutral-500">• ABRANTES</span>
@@ -455,28 +455,40 @@
       </div>
 
       <!-- 2. Grid Principal Equilibrado do Hero -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center flex-1 my-auto">
+      <div class="flex-1 flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-10 justify-between lg:items-center my-auto">
         
         <!-- Lado Esquerdo: Tipografia & Ações Compactas (Puro P&B) -->
-        <div class="lg:col-span-7 flex flex-col justify-center">
+        <div class="lg:col-span-7 flex flex-col justify-between flex-1 py-1 sm:py-4 gap-4 sm:gap-6">
 
+          <!-- Linha de Título com Logótipo Integrado à Direita no Mobile (Círculo Vermelho) -->
+          <div class="reveal flex items-center justify-between gap-3 sm:gap-6">
+            <h1 class="font-title text-[38px] sm:text-6xl lg:text-7xl xl:text-8xl text-white tracking-tight uppercase leading-[0.92]">
+              ENTRA EM <span class="text-neutral-500 hover:text-white transition-colors">MODO</span> <br>
+              <span class="font-royal text-[32px] sm:text-5xl lg:text-6xl xl:text-7xl tracking-normal inline-block mt-1 sm:mt-2">CLANDESTINO.</span>
+            </h1>
 
-          <h1 class="reveal font-title text-4xl sm:text-6xl lg:text-7xl xl:text-8xl text-white tracking-tight uppercase leading-[0.9] mb-3">
-            ENTRA EM <span class="text-neutral-500 hover:text-white transition-colors">MODO</span> <br>
-            <span class="font-royal text-3xl sm:text-5xl lg:text-6xl xl:text-7xl tracking-normal inline-block mt-1 sm:mt-2">CLANDESTINO.</span>
-          </h1>
+            <!-- Logótipo Oficial no Espaço Indicado pelo Utilizador (Mobile & Tablet) -->
+            <div class="lg:hidden shrink-0 flex items-center justify-center select-none">
+              <img
+                src="assets/images/logo_semfundo.png"
+                alt="Logo Barbearia Clandestina"
+                class="w-24 sm:w-32 max-w-[28vw] h-auto object-contain drop-shadow-[0_10px_25px_rgba(255,255,255,0.12)] active:scale-95 transition-transform cursor-pointer"
+                onclick="pulseHeroLogo()"
+              >
+            </div>
+          </div>
 
-          <p class="reveal text-neutral-300 text-xs sm:text-sm max-w-xl font-sans leading-relaxed mb-5">
+          <p class="reveal text-neutral-300 text-xs sm:text-sm lg:text-base max-w-xl font-sans leading-relaxed">
             Fundada em 2019 no coração de Abrantes para quem exige corte cirúrgico: o zumbido magnético da máquina, o corte rente da shaver, a navalha no couro e o ritual revigorante da toalha quente aromática.
           </p>
 
           <!-- Ações Principais Monocromáticas -->
-          <div class="reveal flex flex-col sm:flex-row gap-2.5 sm:gap-3 items-stretch sm:items-center mb-5">
-            <button onclick="openBookingModal('Geral')" class="interactive-el w-full sm:w-auto px-8 py-3.5 bg-white hover:bg-neutral-200 text-black font-title text-base sm:text-lg uppercase tracking-widest transition-all flex items-center justify-center gap-2.5 shadow-lg shadow-black/50 active:scale-95">
+          <div class="reveal flex flex-col sm:flex-row gap-2.5 sm:gap-3 items-stretch sm:items-center">
+            <button onclick="openBookingModal('Geral')" class="interactive-el w-full sm:w-auto px-8 py-3.5 sm:py-4 bg-white hover:bg-neutral-200 text-black font-title text-base sm:text-lg uppercase tracking-widest transition-all flex items-center justify-center gap-2.5 shadow-lg shadow-black/50 active:scale-95">
               <span>AGENDAR CADEIRA</span>
               <i class="fa-solid fa-scissors text-xs"></i>
             </button>
-            <a href="#servicos" class="interactive-el w-full sm:w-auto px-8 py-3.5 bg-transparent hover:bg-neutral-900 border border-neutral-700 hover:border-white text-white font-title text-base sm:text-lg uppercase tracking-widest transition-all flex items-center justify-center gap-2.5 active:scale-95" onmouseenter="sound.playRealScissors()">
+            <a href="#servicos" class="interactive-el w-full sm:w-auto px-8 py-3.5 sm:py-4 bg-transparent hover:bg-neutral-900 border border-neutral-700 hover:border-white text-white font-title text-base sm:text-lg uppercase tracking-widest transition-all flex items-center justify-center gap-2.5 active:scale-95" onmouseenter="sound.playRealScissors()">
               <span>VER SERVIÇOS & PREÇOS</span>
               <i class="fa-solid fa-arrow-down text-xs"></i>
             </a>
@@ -499,8 +511,8 @@
           </div>
         </div>
 
-        <!-- Lado Direito: Logotipo Oficial da Barbearia em Escala Ajustada e Sem Moldura -->
-        <div class="lg:col-span-5 relative flex justify-center lg:justify-end items-center py-2 lg:py-0">
+        <!-- Lado Direito: Logotipo Oficial da Barbearia em Desktop (Oculto em Mobile) -->
+        <div class="hidden lg:flex lg:col-span-5 relative justify-center lg:justify-end items-center py-2 lg:py-0">
           
           <!-- Efeito Atmosférico de Profundidade Subtil atrás do Logo -->
           <div class="absolute w-[220px] sm:w-[340px] lg:w-[480px] xl:w-[560px] h-[220px] sm:h-[340px] lg:h-[480px] xl:h-[560px] rounded-full bg-gradient-to-tr from-white/[0.03] via-transparent to-white/[0.03] blur-3xl pointer-events-none -z-10 translate-x-3 lg:translate-x-8"></div>
