@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="pt" class="scroll-smooth bg-black text-white">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BARBEARIA CLANDESTINA | ABRANTES • MODO CLANDESTINO</title>
+  
+  <!-- Tailwind CSS CDN & Configuração Externa -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="assets/js/tailwind-config.js"></script>
+  
+  <!-- Google Fonts: Bebas Neue (cinema/editorial), Space Mono (técnico brutalista), Plus Jakarta Sans (leitura limpa) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Estilos Personalizados da Barbearia Clandestina (CSS Externo) -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="selection:bg-white selection:text-black antialiased relative">
+
+  <!-- ÁUDIO REAL DE BARBEARIA: PRÉ-CARREGAMENTO NATIVO -->
+  <div id="barber-audio-dom" class="hidden" aria-hidden="true">
+    <audio id="snd-scissors" src="assets/sounds/real_scissors.wav" preload="auto"></audio>
+    <audio id="snd-scissors-snip" src="assets/sounds/real_scissors_snip.wav" preload="auto"></audio>
+    <audio id="snd-clipper" src="assets/sounds/real_clipper_binaural.wav" preload="auto"></audio>
+    <audio id="snd-shaver" src="assets/sounds/clipper.mp3" preload="auto"></audio>
+    <audio id="snd-razor" src="assets/sounds/real_razor.wav" preload="auto"></audio>
+    <audio id="snd-spray" src="assets/sounds/real_spray.wav" preload="auto"></audio>
+  </div>
+
+  <!-- OVERLAYS CINEMATOGRÁFICOS P&B -->
+  <div class="film-grain"></div>
+  <div class="cinema-vignette"></div>
+  <div class="cinema-scanlines"></div>
+  <div class="cursor-spotlight"></div>
+  <div id="camera-flash"></div>
+
+  <!-- Cursor (Desktop) -->
+  <div id="cursor-dot" class="custom-cursor-dot hidden md:block"></div>
+  <div id="cursor-ring" class="custom-cursor-ring hidden md:block"></div>
+
+  <!-- ==================== TELA DE CARREGAMENTO MINIMALISTA & FLUIDA ==================== -->
+  <div id="intro-gate" class="fixed inset-0 z-[1000] bg-black flex flex-col items-center justify-center p-6 select-none overflow-hidden transition-all duration-700">
+    
+    <!-- Palco Central de Montagem do Logo (Sem card nem moldura) -->
+    <div id="assembly-stage" class="assembly-stage relative flex items-center justify-center">
+      
+      <!-- Onda de Choque da Fusão Final -->
+      <div id="assembly-shockwave" class="shockwave-ring"></div>
+
+      <!-- 1. TESOURA DE BARBEIRO PROFISSIONAL (AÇO CIRÚRGICO P&B) -->
+      <div id="part-scissors" class="assembly-part part-scissors">
+        <svg viewBox="0 0 200 200" class="w-36 h-36 sm:w-44 sm:h-44 drop-shadow-[0_0_16px_rgba(255,255,255,0.4)]">
+          <defs>
+            <linearGradient id="sc-blade-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="60%" stop-color="#e5e5e5"/>
+              <stop offset="100%" stop-color="#a3a3a3"/>
+            </linearGradient>
+          </defs>
+          <!-- Lâmina Superior (Convexa com bisel afiado) -->
+          <path d="M96 95 L98 20 C98 18 102 18 102 20 L105 95 Z" fill="url(#sc-blade-grad)" stroke="#000000" stroke-width="0.8"/>
+          <path d="M100 20 L100 95" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M98 20 L94 92 L100 95 Z" fill="#ffffff" opacity="0.4"/>
+
+          <!-- Lâmina Inferior de Contracorte -->
+          <path d="M104 95 L102 20 C102 18 98 18 98 20 L95 95 Z" fill="url(#sc-blade-grad)" stroke="#000000" stroke-width="0.8"/>
+
+          <!-- Haste e Anel do Polegar (Esquerda) -->
+          <path d="M96 105 C94 118 84 128 78 138 C75 142 70 148 64 153" fill="none" stroke="url(#sc-blade-grad)" stroke-width="6" stroke-linecap="round"/>
+          <ellipse cx="58" cy="160" rx="17" ry="21" fill="none" stroke="#ffffff" stroke-width="4.5" transform="rotate(-15 58 160)"/>
+          <ellipse cx="58" cy="160" rx="14" ry="18" fill="none" stroke="#171717" stroke-width="1" transform="rotate(-15 58 160)"/>
+
+          <!-- Haste e Anel do Dedo com Apoio (Direita) -->
+          <path d="M104 105 C106 118 116 128 122 138 C125 142 130 148 136 153" fill="none" stroke="url(#sc-blade-grad)" stroke-width="6" stroke-linecap="round"/>
+          <ellipse cx="142" cy="160" rx="17" ry="21" fill="none" stroke="#ffffff" stroke-width="4.5" transform="rotate(15 142 160)"/>
+          <ellipse cx="142" cy="160" rx="14" ry="18" fill="none" stroke="#171717" stroke-width="1" transform="rotate(15 142 160)"/>
+
+          <!-- Apoio de Dedo / Pinky Tang Ergonómico -->
+          <path d="M156 169 C164 176 172 179 179 175 C181 173 180 169 177 168 C171 166 166 163 158 162 Z" fill="#ffffff" stroke="#000000" stroke-width="0.75"/>
+
+          <!-- Batente de Borracha Silenciador -->
+          <circle cx="100" cy="158" r="2.8" fill="#171717" stroke="#737373" stroke-width="0.8"/>
+
+          <!-- Parafuso de Tensão Cirúrgico com Anilha -->
+          <circle cx="100" cy="100" r="9.5" fill="#171717" stroke="#ffffff" stroke-width="1.8"/>
+          <circle cx="100" cy="100" r="6.5" fill="#ffffff"/>
+          <line x1="95.5" y1="100" x2="104.5" y2="100" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="100" cy="100" r="1.6" fill="#000000"/>
+        </svg>
+      </div>
+
+      <!-- 2. CLIPPER (MÁQUINA DE CORTE PROFISSIONAL P&B) -->
+      <div id="part-clipper" class="assembly-part part-clipper">
+        <svg viewBox="0 0 200 200" class="w-32 h-32 sm:w-40 sm:h-40 drop-shadow-[0_0_16px_rgba(255,255,255,0.35)]">
+          <defs>
+            <linearGradient id="cl-metal-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#8a8a8a"/>
+              <stop offset="35%" stop-color="#ffffff"/>
+              <stop offset="70%" stop-color="#e5e5e5"/>
+              <stop offset="100%" stop-color="#737373"/>
+            </linearGradient>
+            <linearGradient id="cl-body-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#0a0a0a"/>
+              <stop offset="25%" stop-color="#262626"/>
+              <stop offset="75%" stop-color="#1c1c1c"/>
+              <stop offset="100%" stop-color="#000000"/>
+            </linearGradient>
+            <pattern id="cl-knurl" width="4" height="4" patternUnits="userSpaceOnUse">
+              <path d="M0 2 L2 0 L4 2 L2 4 Z" fill="#2e2e2e" stroke="#121212" stroke-width="0.5"/>
+            </pattern>
+          </defs>
+
+          <!-- Gancho Metálico de Suspensão (Base) -->
+          <path d="M91 173 C91 185 109 185 109 173" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+
+          <!-- Alavanca Lateral de Fade / Graduação -->
+          <path d="M68 56 L54 68 C52 70 52 74 55 76 L61 78 C64 77 65 74 64 71 L72 62 Z" fill="#ffffff" stroke="#000000" stroke-width="1"/>
+          <line x1="55" y1="71" x2="59" y2="75" stroke="#000000" stroke-width="1.2"/>
+          <line x1="57" y1="69" x2="61" y2="73" stroke="#000000" stroke-width="1.2"/>
+
+          <!-- Corpo Metálico Ergonómico -->
+          <path d="M72 48 C72 48 70 85 73 115 C75 135 77 158 83 168 C87 172 113 172 117 168 C123 158 125 135 127 115 C130 85 128 48 128 48 Z" fill="url(#cl-body-grad)" stroke="#ffffff" stroke-width="1.8"/>
+
+          <!-- Textura Knurling Antiderrapante -->
+          <path d="M77 105 C78 125 79 145 83 158 C86 160 114 160 117 158 C121 145 122 125 123 105 Z" fill="url(#cl-knurl)"/>
+
+          <!-- Painel Superior de Encaixe -->
+          <path d="M76 52 C76 52 75 75 77 92 C80 96 120 96 123 92 C125 75 124 52 124 52 Z" fill="#141414" stroke="#525252" stroke-width="1"/>
+          <path d="M84 56 L116 56 L114 86 L86 86 Z" fill="url(#cl-metal-grad)" opacity="0.9"/>
+          <line x1="100" y1="58" x2="100" y2="84" stroke="#000000" stroke-width="2"/>
+
+          <!-- Interruptor de Alimentação (Toggle Switch) -->
+          <rect x="94" y="104" width="12" height="18" rx="2" fill="#000000" stroke="#737373" stroke-width="1"/>
+          <rect x="96" y="106" width="8" height="8" rx="1" fill="#ffffff"/>
+          <line x1="97" y1="110" x2="103" y2="110" stroke="#000000" stroke-width="1"/>
+
+          <!-- Barra Indicadora LED Branca -->
+          <rect x="92" y="140" width="16" height="3" rx="1.5" fill="#ffffff"/>
+
+          <!-- Base da Cabeça de Corte -->
+          <rect x="68" y="44" width="64" height="6" rx="1" fill="#262626" stroke="#ffffff" stroke-width="1"/>
+
+          <!-- Placa de Corte e Dentes Cirúrgicos (Fade Blade) -->
+          <path d="M66 26 L134 26 L131 44 L69 44 Z" fill="url(#cl-metal-grad)" stroke="#ffffff" stroke-width="1.2"/>
+          <path d="
+            M68 26 L68 18 L70 18 L70 26 
+            M72 26 L72 18 L74 18 L74 26 
+            M76 26 L76 18 L78 18 L78 26 
+            M80 26 L80 18 L82 18 L82 26 
+            M84 26 L84 18 L86 18 L86 26 
+            M88 26 L88 18 L90 18 L90 26 
+            M92 26 L92 18 L94 18 L94 26 
+            M96 26 L96 18 L98 18 L98 26 
+            M100 26 L100 18 L102 18 L102 26 
+            M104 26 L104 18 L106 18 L106 26 
+            M108 26 L108 18 L110 18 L110 26 
+            M112 26 L112 18 L114 18 L114 26 
+            M116 26 L116 18 L118 18 L118 26 
+            M120 26 L120 18 L122 18 L122 26 
+            M124 26 L124 18 L126 18 L126 26 
+            M128 26 L128 18 L130 18 L130 26
+          " stroke="#ffffff" stroke-width="1.8" fill="none"/>
+
+          <!-- Parafusos Sextavados de Calibração -->
+          <circle cx="82" cy="36" r="3.2" fill="#171717" stroke="#ffffff" stroke-width="1"/>
+          <line x1="80" y1="36" x2="84" y2="36" stroke="#ffffff" stroke-width="1"/>
+          <circle cx="118" cy="36" r="3.2" fill="#171717" stroke="#ffffff" stroke-width="1"/>
+          <line x1="116" y1="36" x2="120" y2="36" stroke="#ffffff" stroke-width="1"/>
+        </svg>
+      </div>
+
+      <!-- 3. NAVALHA CLÁSSICA / SHAVETTE (P&B) -->
+      <div id="part-razor" class="assembly-part part-razor">
+        <svg viewBox="0 0 200 200" class="w-36 h-36 sm:w-44 sm:h-44 drop-shadow-[0_0_16px_rgba(255,255,255,0.4)]">
+          <defs>
+            <linearGradient id="rz-blade-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="45%" stop-color="#e5e5e5"/>
+              <stop offset="80%" stop-color="#cccccc"/>
+              <stop offset="100%" stop-color="#8a8a8a"/>
+            </linearGradient>
+            <linearGradient id="rz-spine-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="100%" stop-color="#a3a3a3"/>
+            </linearGradient>
+            <linearGradient id="rz-scale-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#262626"/>
+              <stop offset="50%" stop-color="#141414"/>
+              <stop offset="100%" stop-color="#050505"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Cabo Ergonómico (Scales da Navalha) -->
+          <path d="M72 118 C65 130 52 152 46 168 C44 174 48 178 54 177 C68 175 84 156 94 138 C97 132 94 124 88 120 Z" fill="url(#rz-scale-grad)" stroke="#ffffff" stroke-width="1.8"/>
+          <!-- Rebites Metálicos do Cabo -->
+          <circle cx="50" cy="174" r="2.2" fill="#ffffff" stroke="#000000" stroke-width="0.8"/>
+          <circle cx="78" cy="142" r="1.8" fill="#a3a3a3"/>
+
+          <!-- Espiga / Tang com Ranhuras Jimps de Aderência -->
+          <path d="M72 118 C68 114 58 108 52 102 C49 99 48 95 51 93 C53 91 57 93 61 97 C67 103 74 110 76 116 Z" fill="#d4d4d4" stroke="#ffffff" stroke-width="0.8"/>
+          <line x1="55" y1="99" x2="57" y2="102" stroke="#171717" stroke-width="1"/>
+          <line x1="58" y1="102" x2="60" y2="105" stroke="#171717" stroke-width="1"/>
+          <line x1="61" y1="105" x2="63" y2="108" stroke="#171717" stroke-width="1"/>
+
+          <!-- Lâmina em Aço Polido (Hollow Ground) -->
+          <path d="M74 116 L92 100 L168 46 C172 43 176 46 174 51 L166 74 C165 77 161 78 157 76 L86 116 Z" fill="url(#rz-blade-grad)" stroke="#ffffff" stroke-width="1.5"/>
+          <!-- Costas Reforçadas / Spine Chanfrado -->
+          <path d="M74 116 L92 100 L168 46 C171 44 173 45 171 48 L168 53 L94 104 L76 118 Z" fill="url(#rz-spine-grad)"/>
+          <!-- Reflexo no Desbaste Côncavo -->
+          <path d="M98 96 L160 52 C162 51 163 53 162 56 L102 99 Z" fill="#ffffff" opacity="0.75"/>
+          <!-- Fio Cirúrgico de Corte com Ponta Francesa -->
+          <line x1="86" y1="116" x2="166" y2="74" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
+
+          <!-- Pivô Central com Anilha em Aço -->
+          <circle cx="74" cy="118" r="6" fill="#171717" stroke="#ffffff" stroke-width="1.5"/>
+          <circle cx="74" cy="118" r="3.2" fill="#ffffff"/>
+          <circle cx="74" cy="118" r="1.2" fill="#000000"/>
+        </svg>
+      </div>
+
+      <!-- 4. BRASÃO E ARO HERALDICO OFICIAL (P&B) -->
+      <div id="part-crest" class="assembly-part part-crest">
+        <svg viewBox="0 0 200 200" class="w-52 h-52 sm:w-68 sm:h-68 drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">
+          <!-- Aro Notched Estilo Moeda Clássica -->
+          <circle cx="100" cy="100" r="92" fill="none" stroke="#ffffff" stroke-width="2"/>
+          <circle cx="100" cy="100" r="87" fill="none" stroke="#ffffff" stroke-width="3" stroke-dasharray="3 3"/>
+          <circle cx="100" cy="100" r="82" fill="none" stroke="#525252" stroke-width="1"/>
+
+          <!-- Aros Concêntricos de Precisão -->
+          <circle cx="100" cy="100" r="74" fill="none" stroke="#ffffff" stroke-width="1.8"/>
+          <circle cx="100" cy="100" r="70" fill="none" stroke="#737373" stroke-width="1" stroke-dasharray="2 4"/>
+          <circle cx="100" cy="100" r="62" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+
+          <!-- Estrela Superior de 5 Pontas -->
+          <polygon points="100,16 103.5,26.5 114.5,26.5 105.5,33 109,43.5 100,37 91,43.5 94.5,33 85.5,26.5 96.5,26.5" fill="#ffffff"/>
+
+          <!-- Estrela Inferior de 5 Pontas -->
+          <polygon points="100,184 103.5,173.5 114.5,173.5 105.5,167 109,156.5 100,163 91,156.5 94.5,167 85.5,173.5 96.5,173.5" fill="#ffffff"/>
+
+          <!-- Losangos Laterais de Precisão -->
+          <polygon points="20,100 24,96 28,100 24,104" fill="#ffffff"/>
+          <polygon points="172,100 176,96 180,100 176,104" fill="#ffffff"/>
+
+          <!-- Coroas de Louros Simétricas em Preto e Branco -->
+          <g fill="#ffffff" opacity="0.9">
+            <path d="M42 78 C40 73 45 70 48 74 C46 79 43 81 42 78 Z"/>
+            <path d="M37 90 C34 86 39 82 43 85 C42 90 38 92 37 90 Z"/>
+            <path d="M36 104 C34 100 38 96 42 99 C41 104 37 106 36 104 Z"/>
+            <path d="M39 118 C36 115 40 110 44 113 C43 118 40 120 39 118 Z"/>
+            <path d="M46 130 C43 128 46 122 51 124 C51 129 47 132 46 130 Z"/>
+          </g>
+          <g fill="#ffffff" opacity="0.9">
+            <path d="M158 78 C160 73 155 70 152 74 C154 79 157 81 158 78 Z"/>
+            <path d="M163 90 C166 86 161 82 157 85 C158 90 162 92 163 90 Z"/>
+            <path d="M164 104 C166 100 162 96 158 99 C159 104 163 106 164 104 Z"/>
+            <path d="M161 118 C164 115 160 110 156 113 C157 118 160 120 161 118 Z"/>
+            <path d="M154 130 C157 128 154 122 149 124 C149 129 153 132 154 130 Z"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- 5. O LOGOTIPO FINAL OFICIAL (CORES REAIS) -->
+      <img id="part-final-logo" src="assets/images/logo_semfundo.png" alt="Barbearia Clandestina Oficial" class="assembly-part part-final-logo">
+    </div>
+
+    <!-- Barra de Progresso Clean e Minimalista, Sem Texto -->
+    <div class="w-44 sm:w-64 h-[2px] bg-neutral-900 overflow-hidden relative rounded-full mt-10">
+      <div id="preloader-progress-bar" class="h-full bg-white transition-all duration-150 ease-out" style="width: 0%;"></div>
+    </div>
+  </div>
+
+  <!-- ==================== BARBER POLE SCROLL PROGRESS SUPERIOR ==================== -->
+  <div id="top-scroll-progress" class="fixed top-0 left-0 w-full h-[3px] z-[60] pointer-events-none">
+    <div id="top-scroll-fill" class="h-full w-0 barber-pole-ribbon transition-[width] duration-75 relative">
+      <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-2 h-2 rounded-full bg-white shadow-[0_0_8px_#ffffff]"></div>
+    </div>
+  </div>
+
+  <!-- ==================== REGISTO LATERAL DE PROFUNDIDADE (BARBER SCROLL DEPTH) ==================== -->
+  <aside id="barber-scroll-track" class="fixed right-3 lg:right-5 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center select-none pointer-events-auto">
+    <div class="relative w-8 flex flex-col items-center py-4 bg-black/85 backdrop-blur-md border border-neutral-800 rounded-full shadow-2xl">
+      
+      <!-- Lâmina de Navalha Indicadora Deslizante com Giro Tátil -->
+      <div id="scroll-razor-indicator" class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-75 text-white filter drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" style="top: 8%;">
+        <div class="flex items-center justify-center w-6 h-6 rounded-full bg-neutral-900 border border-white text-white text-[10px] transform -rotate-45 hover:scale-125 transition-transform cursor-pointer" title="Profundidade do Corte">
+          <i class="fa-solid fa-scissors"></i>
+        </div>
+      </div>
+
+      <!-- Marcadores de secção com links diretos -->
+      <div class="flex flex-col items-center gap-6 my-2 text-[8px] font-mono text-neutral-500">
+        <a href="#home" class="scroll-milestone group relative flex items-center justify-center w-3 h-3 hover:text-white" data-target="home" title="01 Início">
+          <span class="w-1.5 h-1.5 rounded-full bg-white transition-colors milestone-dot"></span>
+          <span class="absolute right-6 px-2 py-0.5 bg-black border border-neutral-800 text-white text-[9px] font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap shadow-lg">01 Início</span>
+        </a>
+        <a href="#quemsomos" class="scroll-milestone group relative flex items-center justify-center w-3 h-3 hover:text-white" data-target="quemsomos" title="02 História">
+          <span class="w-1.5 h-1.5 rounded-full bg-neutral-700 group-hover:bg-white transition-colors milestone-dot"></span>
+          <span class="absolute right-6 px-2 py-0.5 bg-black border border-neutral-800 text-white text-[9px] font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap shadow-lg">02 História</span>
+        </a>
+        <a href="#servicos" class="scroll-milestone group relative flex items-center justify-center w-3 h-3 hover:text-white" data-target="servicos" title="03 Serviços">
+          <span class="w-1.5 h-1.5 rounded-full bg-neutral-700 group-hover:bg-white transition-colors milestone-dot"></span>
+          <span class="absolute right-6 px-2 py-0.5 bg-black border border-neutral-800 text-white text-[9px] font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap shadow-lg">03 Serviços</span>
+        </a>
+        <a href="#cartao" class="scroll-milestone group relative flex items-center justify-center w-3 h-3 hover:text-white" data-target="cartao" title="04 Caderneta">
+          <span class="w-1.5 h-1.5 rounded-full bg-neutral-700 group-hover:bg-white transition-colors milestone-dot"></span>
+          <span class="absolute right-6 px-2 py-0.5 bg-black border border-neutral-800 text-white text-[9px] font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap shadow-lg">04 Caderneta</span>
+        </a>
+        <a href="#galeria" class="scroll-milestone group relative flex items-center justify-center w-3 h-3 hover:text-white" data-target="galeria" title="05 Galeria">
+          <span class="w-1.5 h-1.5 rounded-full bg-neutral-700 group-hover:bg-white transition-colors milestone-dot"></span>
+          <span class="absolute right-6 px-2 py-0.5 bg-black border border-neutral-800 text-white text-[9px] font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap shadow-lg">05 Galeria</span>
+        </a>
+        <a href="#feedbacks" class="scroll-milestone group relative flex items-center justify-center w-3 h-3 hover:text-white" data-target="feedbacks" title="06 Avaliações">
+          <span class="w-1.5 h-1.5 rounded-full bg-neutral-700 group-hover:bg-white transition-colors milestone-dot"></span>
+          <span class="absolute right-6 px-2 py-0.5 bg-black border border-neutral-800 text-white text-[9px] font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap shadow-lg">06 Avaliações</span>
+        </a>
+        <a href="#contacto" class="scroll-milestone group relative flex items-center justify-center w-3 h-3 hover:text-white" data-target="contacto" title="07 Contacto">
+          <span class="w-1.5 h-1.5 rounded-full bg-neutral-700 group-hover:bg-white transition-colors milestone-dot"></span>
+          <span class="absolute right-6 px-2 py-0.5 bg-black border border-neutral-800 text-white text-[9px] font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap shadow-lg">07 Contacto</span>
+        </a>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- ==================== HEADER COM FOCO P&B E BARBER ACCENT ==================== -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-[#0a0a0a]/95 backdrop-blur-md border-b border-neutral-800 transition-all">
+    <!-- Barber Pole Ribbon Accent no Cabeçalho (Detalhe Sutil) -->
+    <div class="w-full h-[2.5px] barber-pole-ribbon"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo Original em Cores Reais -->
+      <a href="#home" class="interactive-el flex items-center gap-3 sm:gap-4 group">
+        <div class="border border-neutral-800 p-1 bg-neutral-900 shadow-sm group-hover:border-neutral-500 transition-colors shrink-0">
+          <img src="assets/images/logo.jpg" alt="Logo Barbearia Clandestina" class="h-9 sm:h-10 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-title text-lg sm:text-xl tracking-widest uppercase text-white leading-none">CLANDESTINA</span>
+          <span class="font-mono text-[8px] sm:text-[9px] text-neutral-400 uppercase tracking-widest mt-0.5">
+            <span class="text-white font-bold">ABRANTES</span> • EST. 2019
+          </span>
+        </div>
+      </a>
+
+      <!-- Navegação Editorial Monocromática -->
+      <nav class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-widest text-neutral-400">
+        <a href="#home" class="interactive-el hover:text-white transition-colors razor-slash py-1 text-white">Início</a>
+        <a href="#quemsomos" class="interactive-el hover:text-white transition-colors razor-slash py-1">História</a>
+        <a href="#servicos" class="interactive-el hover:text-white transition-colors razor-slash py-1">Serviços</a>
+        <a href="#cartao" class="interactive-el hover:text-white transition-colors razor-slash py-1">Caderneta</a>
+        <a href="#galeria" class="interactive-el hover:text-white transition-colors razor-slash py-1">Galeria</a>
+        <a href="#feedbacks" class="interactive-el hover:text-white transition-colors razor-slash py-1">Avaliações</a>
+        <a href="#contacto" class="interactive-el hover:text-white transition-colors razor-slash py-1">Contacto</a>
+      </nav>
+
+      <!-- Painel de Ações & Marcação -->
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        <!-- Botão Marcar em Preto & Branco com Alto Contraste (desktop / tablet) -->
+        <button onclick="openBookingModal('Geral')" class="interactive-el hidden sm:flex px-4 sm:px-6 py-2 sm:py-2.5 bg-white hover:bg-neutral-200 text-black font-title text-xs sm:text-sm uppercase tracking-wider transition-all items-center gap-1.5 sm:gap-2 shadow-lg shadow-black/60 active:scale-95">
+          <span>MARCAR</span>
+          <i class="fa-solid fa-scissors text-[10px] sm:text-xs"></i>
+        </button>
+
+        <!-- Mobile Menu Toggle (44px+ touch target) -->
+        <button id="mobile-menu-btn" aria-label="Abrir Menu de Navegação" class="interactive-el md:hidden text-white text-lg w-11 h-11 border border-neutral-800 bg-[#121212] rounded-sm hover:border-neutral-500 transition-colors flex items-center justify-center active:scale-95">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Menu Backdrop -->
+    <div id="mobile-menu-backdrop" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-40 hidden md:hidden transition-opacity duration-200 opacity-0"></div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden fixed top-20 left-0 w-full max-h-[calc(100vh-5rem)] overflow-y-auto bg-[#0c0c0c] border-b border-neutral-800 z-50 px-5 py-5 flex flex-col gap-1 shadow-2xl transition-all duration-200 -translate-y-2 opacity-0">
+      
+      <span class="font-mono text-[10px] text-neutral-500 uppercase tracking-widest px-3 mb-1">Navegação Principal</span>
+
+      <a href="#home" class="mobile-item flex items-center justify-between px-3 py-3 rounded-sm text-xs font-mono uppercase tracking-wider text-white hover:bg-neutral-900 transition-colors border-b border-neutral-900">
+        <span>01 Início</span>
+        <i class="fa-solid fa-chevron-right text-[10px] text-neutral-600"></i>
+      </a>
+      <a href="#quemsomos" class="mobile-item flex items-center justify-between px-3 py-3 rounded-sm text-xs font-mono uppercase tracking-wider text-neutral-400 hover:text-white hover:bg-neutral-900 transition-colors border-b border-neutral-900">
+        <span>02 História</span>
+        <i class="fa-solid fa-chevron-right text-[10px] text-neutral-600"></i>
+      </a>
+      <a href="#servicos" class="mobile-item flex items-center justify-between px-3 py-3 rounded-sm text-xs font-mono uppercase tracking-wider text-neutral-400 hover:text-white hover:bg-neutral-900 transition-colors border-b border-neutral-900">
+        <span>03 Serviços & Preços</span>
+        <i class="fa-solid fa-chevron-right text-[10px] text-neutral-600"></i>
+      </a>
+      <a href="#cartao" class="mobile-item flex items-center justify-between px-3 py-3 rounded-sm text-xs font-mono uppercase tracking-wider text-neutral-400 hover:text-white hover:bg-neutral-900 transition-colors border-b border-neutral-900">
+        <span>04 Caderneta Fidelidade</span>
+        <i class="fa-solid fa-chevron-right text-[10px] text-neutral-600"></i>
+      </a>
+      <a href="#galeria" class="mobile-item flex items-center justify-between px-3 py-3 rounded-sm text-xs font-mono uppercase tracking-wider text-neutral-400 hover:text-white hover:bg-neutral-900 transition-colors border-b border-neutral-900">
+        <span>05 Galeria de Cortes</span>
+        <i class="fa-solid fa-chevron-right text-[10px] text-neutral-600"></i>
+      </a>
+      <a href="#feedbacks" class="mobile-item flex items-center justify-between px-3 py-3 rounded-sm text-xs font-mono uppercase tracking-wider text-neutral-400 hover:text-white hover:bg-neutral-900 transition-colors border-b border-neutral-900">
+        <span>06 Avaliações</span>
+        <i class="fa-solid fa-chevron-right text-[10px] text-neutral-600"></i>
+      </a>
+      <a href="#contacto" class="mobile-item flex items-center justify-between px-3 py-3 rounded-sm text-xs font-mono uppercase tracking-wider text-neutral-400 hover:text-white hover:bg-neutral-900 transition-colors">
+        <span>07 Contacto & Mapa</span>
+        <i class="fa-solid fa-chevron-right text-[10px] text-neutral-600"></i>
+      </a>
+
+      <!-- Ação Direta no Drawer -->
+      <div class="pt-4 mt-2 border-t border-neutral-800 space-y-3">
+        <button onclick="closeMobileMenu(); openBookingModal('Geral');" class="w-full py-3.5 bg-white hover:bg-neutral-200 text-black font-title text-base uppercase tracking-wider font-bold shadow-lg flex items-center justify-center gap-2 rounded-sm active:scale-95 transition-all">
+          <span>RESERVAR CADEIRA</span>
+          <i class="fa-solid fa-scissors text-xs"></i>
+        </button>
+
+        <!-- Informações Rápidas -->
+        <div class="grid grid-cols-2 gap-2 text-[10px] font-mono text-neutral-400 pt-1">
+          <a href="https://api.whatsapp.com/send?phone=+351912345678" target="_blank" class="p-2.5 bg-neutral-900 border border-neutral-800 rounded-sm flex items-center justify-center gap-1.5 hover:text-white">
+            <i class="fa-brands fa-whatsapp text-emerald-500"></i> WhatsApp
+          </a>
+          <a href="https://instagram.com/abarbeariaclandestina" target="_blank" class="p-2.5 bg-neutral-900 border border-neutral-800 rounded-sm flex items-center justify-center gap-1.5 hover:text-white">
+            <i class="fa-brands fa-instagram text-neutral-300"></i> Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION: PRETO E BRANCO COM DETALHES DE BARBEARIA ==================== -->
+  <section id="home" class="min-h-screen lg:h-screen lg:max-h-screen pt-20 lg:pt-24 pb-4 lg:pb-6 flex flex-col justify-between px-4 sm:px-6 lg:px-8 relative border-b border-neutral-800 overflow-hidden bg-[#0a0a0a]">
+
+    <!-- Contentor com Enquadramento Total sem Scroll -->
+    <div class="max-w-7xl mx-auto w-full h-full flex flex-col justify-between relative z-10">
+      
+      <!-- 1. Top Bar de Barbearia Monocromática Limpa -->
+      <div class="reveal flex items-center justify-between font-mono text-[11px] text-neutral-400 uppercase tracking-widest border-b border-neutral-800 pb-2.5 mb-3 lg:mb-4">
+        <div class="flex items-center gap-2.5">
+          <span class="text-white font-bold tracking-wider">BARBEARIA CLANDESTINA</span>
+          <span class="text-neutral-500">• ABRANTES</span>
+        </div>
+        <div class="hidden sm:flex items-center gap-4 text-[10px] text-neutral-400">
+          <span>CORTE DE CABELO</span>
+          <span class="text-neutral-600">•</span>
+          <span>BARBA À NAVALHA</span>
+          <span class="text-neutral-600">•</span>
+          <span>TOALHA QUENTE</span>
+          <span class="text-neutral-600">•</span>
+          <span class="text-white font-bold">DESDE 2019</span>
+        </div>
+      </div>
+
+      <!-- 2. Grid Principal Equilibrado do Hero -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center flex-1 my-auto">
+        
+        <!-- Lado Esquerdo: Tipografia & Ações Compactas (Puro P&B) -->
+        <div class="lg:col-span-7 flex flex-col justify-center">
+
+
+          <h1 class="reveal font-title text-4xl sm:text-6xl lg:text-7xl xl:text-8xl text-white tracking-tight uppercase leading-[0.9] mb-3">
+            ENTRA EM <span class="text-neutral-500 hover:text-white transition-colors">MODO</span> <br>
+            <span class="font-royal text-3xl sm:text-5xl lg:text-6xl xl:text-7xl tracking-normal inline-block mt-1 sm:mt-2">CLANDESTINO.</span>
+          </h1>
+
+          <p class="reveal text-neutral-300 text-xs sm:text-sm max-w-xl font-sans leading-relaxed mb-5">
+            Fundada em 2019 no coração de Abrantes para quem exige corte cirúrgico: o zumbido magnético da máquina, o corte rente da shaver, a navalha no couro e o ritual revigorante da toalha quente aromática.
+          </p>
+
+          <!-- Ações Principais Monocromáticas -->
+          <div class="reveal flex flex-col sm:flex-row gap-2.5 sm:gap-3 items-stretch sm:items-center mb-5">
+            <button onclick="openBookingModal('Geral')" class="interactive-el w-full sm:w-auto px-8 py-3.5 bg-white hover:bg-neutral-200 text-black font-title text-base sm:text-lg uppercase tracking-widest transition-all flex items-center justify-center gap-2.5 shadow-lg shadow-black/50 active:scale-95">
+              <span>AGENDAR CADEIRA</span>
+              <i class="fa-solid fa-scissors text-xs"></i>
+            </button>
+            <a href="#servicos" class="interactive-el w-full sm:w-auto px-8 py-3.5 bg-transparent hover:bg-neutral-900 border border-neutral-700 hover:border-white text-white font-title text-base sm:text-lg uppercase tracking-widest transition-all flex items-center justify-center gap-2.5 active:scale-95" onmouseenter="sound.playRealScissors()">
+              <span>VER SERVIÇOS & PREÇOS</span>
+              <i class="fa-solid fa-arrow-down text-xs"></i>
+            </a>
+          </div>
+
+          <!-- Métricas Integradas com Detalhes Finos Barber Pole -->
+          <div class="reveal grid grid-cols-3 gap-2 sm:gap-3 pt-3 border-t border-neutral-800 font-mono text-xs">
+            <div class="p-2 sm:p-2.5 rounded bg-[#121212] border-t-2 border-white border-l border-r border-b border-neutral-800 text-center sm:text-left">
+              <span class="font-title text-xl sm:text-2xl lg:text-3xl text-white block leading-none">+5 ANOS</span>
+              <span class="text-[8.5px] sm:text-[10px] text-neutral-400 uppercase mt-1 block">Em Abrantes</span>
+            </div>
+            <div class="p-2 sm:p-2.5 rounded bg-[#121212] border-t-2 border-white border-l border-r border-b border-neutral-800 text-center sm:text-left">
+              <span class="font-title text-xl sm:text-2xl lg:text-3xl text-white block leading-none">10º CORTE</span>
+              <span class="text-[8.5px] sm:text-[10px] text-neutral-400 uppercase mt-1 block">Oferta Cartão</span>
+            </div>
+            <div class="p-2 sm:p-2.5 rounded bg-[#121212] border-t-2 border-neutral-500 border-l border-r border-b border-neutral-800 text-center sm:text-left">
+              <span class="font-title text-xl sm:text-2xl lg:text-3xl text-white block leading-none">4.9 / 5★</span>
+              <span class="text-[8.5px] sm:text-[10px] text-neutral-400 uppercase mt-1 block">+150 Avaliações</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lado Direito: Logotipo Oficial da Barbearia em Escala Ajustada e Sem Moldura -->
+        <div class="lg:col-span-5 relative flex justify-center lg:justify-end items-center py-2 lg:py-0">
+          
+          <!-- Efeito Atmosférico de Profundidade Subtil atrás do Logo -->
+          <div class="absolute w-[220px] sm:w-[340px] lg:w-[480px] xl:w-[560px] h-[220px] sm:h-[340px] lg:h-[480px] xl:h-[560px] rounded-full bg-gradient-to-tr from-white/[0.03] via-transparent to-white/[0.03] blur-3xl pointer-events-none -z-10 translate-x-3 lg:translate-x-8"></div>
+
+          <!-- Contentor Estático do Logotipo -->
+          <div class="reveal relative select-none">
+            <img
+              id="hero-logo-img"
+              src="assets/images/logo_semfundo.png"
+              alt="Logo Barbearia Clandestina"
+              class="w-[180px] sm:w-[260px] md:w-[320px] lg:w-[460px] xl:w-[540px] 2xl:w-[620px] max-w-[75vw] lg:max-w-none h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.9)] lg:translate-x-6 xl:translate-x-10 2xl:translate-x-14 transition-all duration-500 pointer-events-none"
+            >
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 3. Bottom Bar do Hero Monocromática -->
+      <div class="reveal flex flex-col sm:flex-row items-center justify-between text-[9px] sm:text-[10px] font-mono text-neutral-400 uppercase tracking-widest pt-2.5 border-t border-neutral-800 gap-1 sm:gap-0 text-center sm:text-left">
+        <span class="text-neutral-400">ABRANTES • CENTRO HISTÓRICO • SEG A SÁB</span>
+        <a href="#servicos" class="hover:text-white transition-colors flex items-center gap-1.5 font-bold text-white">
+          <span>VER SERVIÇOS & PREÇOS</span>
+          <i class="fa-solid fa-chevron-down text-[8px]"></i>
+        </a>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ==================== HISTÓRIA: A AUTÊNTICA CLANDESTINA ==================== -->
+  <section id="quemsomos" class="py-24 bg-[#0f0f0f] border-b border-neutral-800 relative overflow-hidden">
+    <!-- Marca de Água Atmosférica da Navalha Clássica com Parallax -->
+    <div class="absolute right-4 top-1/2 -translate-y-1/2 w-80 h-80 opacity-[0.025] pointer-events-none select-none text-white parallax-bg hidden lg:block" aria-hidden="true">
+      <svg viewBox="0 0 100 100" fill="currentColor" class="w-full h-full">
+        <path d="M10,85 L85,10 C88,7 93,7 96,10 C99,13 99,18 96,21 L21,96 C18,99 13,99 10,96 C7,93 7,88 10,85 Z M25,75 L35,65 M40,60 L50,50 M55,45 L65,35" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+      
+      <!-- Foto Real 1: Life at Clandestina em Cores Autênticas com Moldura P&B -->
+      <div class="lg:col-span-6 reveal reveal-left">
+        <div class="relative border border-neutral-800 p-2.5 bg-[#141414] shadow-xl shadow-black/60 rounded-sm">
+          <!-- Detalhe de Tag Limpa -->
+          <div class="absolute -top-1 left-6 px-3 py-0.5 bg-neutral-900 border border-neutral-700 text-white font-mono text-[9px] uppercase tracking-widest font-bold flex items-center">
+            <span>ESPAÇO REAL • ABRANTES</span>
+          </div>
+
+          <div class="overflow-hidden">
+            <img
+              src="assets/images/life_clandestina.jpg"
+              alt="Ambiente real da Barbearia Clandestina em Abrantes"
+              class="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-500 rounded-sm"
+            >
+          </div>
+          <div class="p-4 border-t border-neutral-800 flex items-center justify-between font-mono text-xs text-neutral-400">
+            <span class="text-white">
+              AMBIENTE AUTÊNTICO & FAMILIAR
+            </span>
+            <span>ABRANTES • DESDE 2019</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Texto Histórico em Preto e Branco -->
+      <div class="lg:col-span-6 reveal">
+        <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-widest mb-2">
+          <span>REGISTO DE CASA • 5 ANOS DE CONFIANÇA</span>
+        </div>
+        <h2 class="font-title text-4xl sm:text-6xl text-white tracking-tight uppercase mb-6 leading-none">
+          TRADIÇÃO, NAVALHA AFIADA E A TRANQUILIDADE QUE MERECES.
+        </h2>
+
+        <p class="text-neutral-300 text-sm leading-relaxed mb-6 font-sans">
+          A <strong class="text-white">Barbearia Clandestina</strong> nasceu em Abrantes com um propósito claro: resgatar o cuidado masculino sem pressas, aliando a mestria da navalha tradicional a técnicas modernas de corte e visagismo.
+        </p>
+
+        <p class="text-neutral-400 text-sm leading-relaxed mb-8 font-sans">
+          Mais do que cortar o cabelo ou aparar a barba, é um espaço para desligar da rotina: uma cadeira clássica, toalha quente aromática, boa música e conversa honesta. É por isso que celebramos mais de 5 anos de confiança diária com quem se senta connosco.
+        </p>
+
+        <div class="border border-neutral-800 p-4 sm:p-6 bg-[#141414] grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 font-mono text-xs rounded-sm shadow-md">
+          <div class="border-l-2 border-white pl-3">
+            <span class="text-white font-bold block text-sm mb-1">ATENDIMENTO DEDICADO</span>
+            <span class="text-neutral-400">Sem filas caóticas, com marcação cuidada e pontualidade.</span>
+          </div>
+          <div class="border-l-2 border-white pl-3">
+            <span class="text-white font-bold block text-sm mb-1">PRODUTOS SELECIONADOS</span>
+            <span class="text-neutral-400">Pomadas, bálsamos e óleos de alta performance para barba e cabelo.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== SERVIÇOS & PREÇOS (FOCO P&B COM ACENTOS PONTUAIS) ==================== -->
+  <section id="servicos" class="py-20 lg:py-24 bg-[#0a0a0a] border-b border-neutral-800 relative overflow-hidden">
+    <!-- Marca de Água das Tesouras de Barbeiro com Parallax -->
+    <div class="absolute left-4 top-1/2 -translate-y-1/2 w-80 h-80 opacity-[0.025] pointer-events-none select-none text-white parallax-bg hidden lg:block" aria-hidden="true">
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" class="w-full h-full">
+        <circle cx="30" cy="80" r="12" />
+        <circle cx="70" cy="80" r="12" />
+        <line x1="38" y1="72" x2="70" y2="20" stroke-width="2.5" />
+        <line x1="62" y1="72" x2="30" y2="20" stroke-width="2.5" />
+        <circle cx="50" cy="46" r="3" fill="currentColor" />
+      </svg>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      
+      <!-- Cabeçalho com Controlos do Slider -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 border-b border-neutral-800 pb-6 reveal">
+        <div>
+          <div class="font-mono text-xs text-neutral-400 uppercase tracking-widest mb-2 flex items-center gap-2">
+            <span>TABELA OFICIAL DE PREÇOS</span>
+            <span class="text-neutral-600">•</span>
+            <span class="text-white font-bold">8 SERVIÇOS</span>
+          </div>
+          <h2 class="font-title text-4xl sm:text-6xl text-white tracking-tight uppercase">
+            SERVIÇOS DE BARBEARIA
+          </h2>
+          <p class="font-sans text-xs text-neutral-400 mt-2 max-w-xl">
+            Cortes cirúrgicos, barboterapia com ozono e tratamentos faciais. Todos os serviços incluem consultoria de imagem e finalização premium.
+          </p>
+        </div>
+
+        <!-- Controlos de Navegação do Slider -->
+        <div class="flex items-center gap-4 mt-6 md:mt-0 shrink-0">
+          <span id="services-slider-counter" class="font-mono text-xs text-neutral-400 tracking-widest">
+            01 / 08
+          </span>
+          <div class="flex items-center gap-2">
+            <button id="services-prev" onclick="slideServices(-1)" aria-label="Serviço anterior" class="interactive-el w-11 h-11 rounded-sm border border-neutral-800 bg-[#121212] hover:bg-white hover:text-black hover:border-white text-white flex items-center justify-center transition-all disabled:opacity-30 disabled:hover:bg-[#121212] disabled:hover:text-white disabled:pointer-events-none active:scale-95 shadow-md">
+              <i class="fa-solid fa-arrow-left text-xs"></i>
+            </button>
+            <button id="services-next" onclick="slideServices(1)" aria-label="Serviço seguinte" class="interactive-el w-11 h-11 rounded-sm border border-neutral-800 bg-[#121212] hover:bg-white hover:text-black hover:border-white text-white flex items-center justify-center transition-all disabled:opacity-30 disabled:hover:bg-[#121212] disabled:hover:text-white disabled:pointer-events-none active:scale-95 shadow-md">
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slider Track com Scroll Snap Horizontal e Zero Desperdício Vertical -->
+      <div class="relative">
+        <div id="services-slider" class="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory py-4 px-1 focus:outline-none select-none [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+
+          <!-- 1. CORTE (15 €) -->
+          <div onmouseenter="sound.playHairCutClipper(1.4)" class="service-card-slide w-[85vw] sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-15px)] shrink-0 snap-start razor-sheen-card border border-neutral-800 border-t-2 border-t-white bg-[#121212] hover:bg-[#161616] hover:border-neutral-600 p-7 flex flex-col justify-between transition-all group cursor-pointer shadow-lg rounded-sm">
+            <div>
+              <div class="font-mono text-xs text-neutral-400 mb-5 flex items-center justify-between">
+                <span class="font-bold text-white">#01 • CORTE</span>
+                <span class="text-[9px] font-mono text-neutral-500 group-hover:text-neutral-300 transition-colors uppercase tracking-wider">[CLIPPER & TESOURA]</span>
+              </div>
+              <h3 class="font-title text-3xl text-white uppercase mb-3">CORTE</h3>
+              <p class="text-xs text-neutral-400 leading-relaxed mb-6 font-sans">
+                Corte de cabelo completo à máquina e tesoura, fade gradual ou corte clássico, lavagem relaxante com massagem capilar e penteado final com produto.
+              </p>
+            </div>
+            <div>
+              <div class="font-title text-4xl text-white mb-5 border-t border-neutral-800 pt-4 flex items-baseline gap-2">
+                <span>15 €</span>
+                <span class="text-xs font-mono text-neutral-500 font-normal">máquina & tesoura</span>
+              </div>
+              <button onclick="openBookingModal('Corte')" class="interactive-el w-full py-3 bg-neutral-800 hover:bg-white text-white hover:text-black font-title text-base uppercase tracking-wider transition-colors rounded-sm">
+                MARCAR CORTE
+              </button>
+            </div>
+          </div>
+
+          <!-- 2. CABELO + BARBA (21 €) -->
+          <div onmouseenter="sound.playWaterSpray(); setTimeout(() => sound.playRazorStrop(), 300);" class="service-card-slide w-[85vw] sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-15px)] shrink-0 snap-start razor-sheen-card border border-neutral-800 border-t-2 border-t-white bg-[#121212] hover:bg-[#161616] hover:border-neutral-600 p-7 flex flex-col justify-between transition-all group cursor-pointer shadow-lg rounded-sm">
+            <div>
+              <div class="font-mono text-xs text-neutral-400 mb-5 flex items-center justify-between">
+                <span class="font-bold text-white">#02 • DUPLO</span>
+                <span class="text-[9px] font-mono text-neutral-500 group-hover:text-neutral-300 transition-colors uppercase tracking-wider">[CABELO + BARBA]</span>
+              </div>
+              <h3 class="font-title text-3xl text-white uppercase mb-3">CABELO + BARBA</h3>
+              <p class="text-xs text-neutral-400 leading-relaxed mb-6 font-sans">
+                O combo clássico de barbearia: corte estilizado completo acompanhado de aparar, desenho e contorno de barba com toalha quente e finalização hidratante.
+              </p>
+            </div>
+            <div>
+              <div class="font-title text-4xl text-white mb-5 border-t border-neutral-800 pt-4 flex items-baseline gap-2">
+                <span>21 €</span>
+                <span class="text-xs font-mono text-neutral-500 font-normal">cuidado integral</span>
+              </div>
+              <button onclick="openBookingModal('Cabelo + Barba')" class="interactive-el w-full py-3 bg-neutral-800 hover:bg-white text-white hover:text-black font-title text-base uppercase tracking-wider transition-colors rounded-sm">
+                MARCAR CABELO + BARBA
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. CORTE + BARBOTERAPIA (23 € - DESTAQUE) -->
+          <div onmouseenter="sound.playWaterSpray(); setTimeout(() => sound.playRazorStrop(), 300);" class="service-card-slide w-[85vw] sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-15px)] shrink-0 snap-start razor-sheen-card border-2 border-white bg-[#141414] p-7 flex flex-col justify-between transition-all relative group cursor-pointer shadow-xl shadow-black/80 rounded-sm">
+            <div>
+              <div class="font-mono text-xs text-neutral-400 mb-4 flex items-center justify-between">
+                <span class="font-bold text-white">#03 • COMBO VIP</span>
+                <span class="text-[9px] font-mono text-neutral-400 group-hover:text-white transition-colors uppercase tracking-wider">[OZONO & NAVALHA]</span>
+              </div>
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-white text-black font-mono text-[9px] font-bold uppercase tracking-widest rounded-sm mb-3">
+                <span>★ MAIS PEDIDO</span>
+              </div>
+              <h3 class="font-title text-3xl text-white uppercase mb-3">CORTE + BARBOTERAPIA</h3>
+              <p class="text-xs text-neutral-300 leading-relaxed mb-6 font-sans">
+                A experiência suprema da casa: corte de cabelo de precisão com ritual completo de barboterapia (vapor de ozono, óleos nutritivos, toalha quente e lâmina cirúrgica).
+              </p>
+            </div>
+            <div>
+              <div class="font-title text-4xl text-white mb-5 border-t border-neutral-800 pt-4 flex items-baseline gap-2">
+                <span class="text-white">23 €</span>
+                <span class="text-xs font-mono text-neutral-400 font-bold">experiência completa</span>
+              </div>
+              <button onclick="openBookingModal('Corte + Barboterapia')" class="interactive-el w-full py-3.5 bg-white hover:bg-neutral-200 text-black font-title text-base uppercase tracking-wider transition-all shadow-md active:scale-95 rounded-sm">
+                MARCAR COMBO VIP
+              </button>
+            </div>
+          </div>
+
+          <!-- 4. BARBA (C/ TOALHA QUENTE) (8 €) -->
+          <div onmouseenter="sound.playRazorStrop()" class="service-card-slide w-[85vw] sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-15px)] shrink-0 snap-start razor-sheen-card border border-neutral-800 border-t-2 border-t-white bg-[#121212] hover:bg-[#161616] hover:border-neutral-600 p-7 flex flex-col justify-between transition-all group cursor-pointer shadow-lg rounded-sm">
+            <div>
+              <div class="font-mono text-xs text-neutral-400 mb-5 flex items-center justify-between">
+                <span class="font-bold text-white">#04 • BARBA</span>
+                <span class="text-[9px] font-mono text-neutral-500 group-hover:text-neutral-300 transition-colors uppercase tracking-wider">[TOALHA QUENTE]</span>
+              </div>
+              <h3 class="font-title text-3xl text-white uppercase mb-3">BARBA (C/ TOALHA QUENTE)</h3>
+              <p class="text-xs text-neutral-400 leading-relaxed mb-6 font-sans">
+                Ritual tradicional com toalha quente aromática para relaxamento dos poros, desenho detalhado de linhas com lâmina afiada e bálsamo refrescante.
+              </p>
+            </div>
+            <div>
+              <div class="font-title text-4xl text-white mb-5 border-t border-neutral-800 pt-4 flex items-baseline gap-2">
+                <span>8 €</span>
+                <span class="text-xs font-mono text-neutral-500 font-normal">ritual tradicional</span>
+              </div>
+              <button onclick="openBookingModal('Barba (c/ toalha quente)')" class="interactive-el w-full py-3 bg-neutral-800 hover:bg-white text-white hover:text-black font-title text-base uppercase tracking-wider transition-colors rounded-sm">
+                MARCAR BARBA
+              </button>
+            </div>
+          </div>
+
+          <!-- 5. CORTE SÉNIOR (+60 ANOS) (12 €) -->
+          <div onmouseenter="sound.playRealScissors()" class="service-card-slide w-[85vw] sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-15px)] shrink-0 snap-start razor-sheen-card border border-neutral-800 border-t-2 border-t-white bg-[#121212] hover:bg-[#161616] hover:border-neutral-600 p-7 flex flex-col justify-between transition-all group cursor-pointer shadow-lg rounded-sm">
+            <div>
+              <div class="font-mono text-xs text-neutral-400 mb-5 flex items-center justify-between">
+                <span class="font-bold text-white">#05 • SÉNIOR</span>
+                <span class="text-[9px] font-mono text-neutral-500 group-hover:text-neutral-300 transition-colors uppercase tracking-wider">[+60 ANOS]</span>
+              </div>
+              <h3 class="font-title text-3xl text-white uppercase mb-3">CORTE SÉNIOR (+60 ANOS)</h3>
+              <p class="text-xs text-neutral-400 leading-relaxed mb-6 font-sans">
+                Corte de cabelo clássico à máquina e tesoura dedicado a clientes seniores (+60 anos), com todo o cuidado, respeito, atenção aos pormenores e conversa de casa.
+              </p>
+            </div>
+            <div>
+              <div class="font-title text-4xl text-white mb-5 border-t border-neutral-800 pt-4 flex items-baseline gap-2">
+                <span>12 €</span>
+                <span class="text-xs font-mono text-neutral-500 font-normal">tarifa especial +60</span>
+              </div>
+              <button onclick="openBookingModal('Corte sénior (+60 anos)')" class="interactive-el w-full py-3 bg-neutral-800 hover:bg-white text-white hover:text-black font-title text-base uppercase tracking-wider transition-colors rounded-sm">
+                MARCAR SÉNIOR
+              </button>
+            </div>
+          </div>
+
+          <!-- 6. BARBOTERAPIA (11 €) -->
+          <div onmouseenter="sound.playWaterSpray()" class="service-card-slide w-[85vw] sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-15px)] shrink-0 snap-start razor-sheen-card border border-neutral-800 border-t-2 border-t-white bg-[#121212] hover:bg-[#161616] hover:border-neutral-600 p-7 flex flex-col justify-between transition-all group cursor-pointer shadow-lg rounded-sm">
+            <div>
+              <div class="font-mono text-xs text-neutral-400 mb-5 flex items-center justify-between">
+                <span class="font-bold text-white">#06 • TERAPIA</span>
+                <span class="text-[9px] font-mono text-neutral-500 group-hover:text-neutral-300 transition-colors uppercase tracking-wider">[OZONO & BÁLSAMO]</span>
+              </div>
+              <h3 class="font-title text-3xl text-white uppercase mb-3">BARBOTERAPIA</h3>
+              <p class="text-xs text-neutral-400 leading-relaxed mb-6 font-sans">
+                Definição e modelagem da barba, vaporização com ozono, hidratação profunda com óleos essenciais, massagem relaxante, bálsamos e toalha quente revigorante.
+              </p>
+            </div>
+            <div>
+              <div class="font-title text-4xl text-white mb-5 border-t border-neutral-800 pt-4 flex items-baseline gap-2">
+                <span>11 €</span>
+                <span class="text-xs font-mono text-neutral-500 font-normal">vapor & ozono</span>
+              </div>
+              <button onclick="openBookingModal('Barboterapia')" class="interactive-el w-full py-3 bg-neutral-800 hover:bg-white text-white hover:text-black font-title text-base uppercase tracking-wider transition-colors rounded-sm">
+                MARCAR BARBOTERAPIA
+              </button>
+            </div>
+          </div>
+
+          <!-- 7. CORTE + TRATAMENTO DE ROSTO (34 €) -->
+          <div onmouseenter="sound.playWaterSpray(); sound.playHairCutClipper(1.2);" class="service-card-slide w-[85vw] sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-15px)] shrink-0 snap-start razor-sheen-card border border-neutral-800 border-t-2 border-t-white bg-[#121212] hover:bg-[#161616] hover:border-neutral-600 p-7 flex flex-col justify-between transition-all group cursor-pointer shadow-lg rounded-sm">
+            <div>
+              <div class="font-mono text-xs text-neutral-400 mb-5 flex items-center justify-between">
+                <span class="font-bold text-white">#07 • CUIDADO TOTAL</span>
+                <span class="text-[9px] font-mono text-neutral-500 group-hover:text-neutral-300 transition-colors uppercase tracking-wider">[CABELO + PELE]</span>
+              </div>
+              <h3 class="font-title text-3xl text-white uppercase mb-3">CORTE + TRATAMENTO DE ROSTO</h3>
+              <p class="text-xs text-neutral-400 leading-relaxed mb-6 font-sans">
+                Corte de cabelo de alta precisão conjugado com tratamento facial completo: esfoliação profunda, vapor de ozono desintoxicante, limpeza de pele e hidratação.
+              </p>
+            </div>
+            <div>
+              <div class="font-title text-4xl text-white mb-5 border-t border-neutral-800 pt-4 flex items-baseline gap-2">
+                <span>34 €</span>
+                <span class="text-xs font-mono text-neutral-500 font-normal">cabelo & pele</span>
+              </div>
+              <button onclick="openBookingModal('Corte + tratamento de rosto')" class="interactive-el w-full py-3 bg-neutral-800 hover:bg-white text-white hover:text-black font-title text-base uppercase tracking-wider transition-colors rounded-sm">
+                MARCAR TRATAMENTO TOTAL
+              </button>
+            </div>
+          </div>
+
+          <!-- 8. TRATAMENTO DE ROSTO (21 €) -->
+          <div onmouseenter="sound.playWaterSpray()" class="service-card-slide w-[85vw] sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-15px)] shrink-0 snap-start razor-sheen-card border border-neutral-800 border-t-2 border-t-white bg-[#121212] hover:bg-[#161616] hover:border-neutral-600 p-7 flex flex-col justify-between transition-all group cursor-pointer shadow-lg rounded-sm">
+            <div>
+              <div class="font-mono text-xs text-neutral-400 mb-5 flex items-center justify-between">
+                <span class="font-bold text-white">#08 • SKINCARE</span>
+                <span class="text-[9px] font-mono text-neutral-500 group-hover:text-neutral-300 transition-colors uppercase tracking-wider">[SPA MASCULINO]</span>
+              </div>
+              <h3 class="font-title text-3xl text-white uppercase mb-3">TRATAMENTO DE ROSTO</h3>
+              <p class="text-xs text-neutral-400 leading-relaxed mb-6 font-sans">
+                Limpeza profunda dos poros, vaporização com ozono, esfoliação suave, massagem revitalizante e hidratação revigorante para recuperação da frescura facial.
+              </p>
+            </div>
+            <div>
+              <div class="font-title text-4xl text-white mb-5 border-t border-neutral-800 pt-4 flex items-baseline gap-2">
+                <span>21 €</span>
+                <span class="text-xs font-mono text-neutral-500 font-normal">skincare masculino</span>
+              </div>
+              <button onclick="openBookingModal('Tratamento de rosto')" class="interactive-el w-full py-3 bg-neutral-800 hover:bg-white text-white hover:text-black font-title text-base uppercase tracking-wider transition-colors rounded-sm">
+                MARCAR TRATAMENTO DE ROSTO
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Indicadores de Pontos (Dots) e Dica Touch Mobile -->
+      <div class="flex flex-col items-center justify-center mt-6">
+        <div class="flex items-center gap-2">
+          <button onclick="goToServiceSlide(0)" class="services-slider-dot h-1.5 rounded-full transition-all duration-300 bg-white w-6" aria-label="Serviço 1"></button>
+          <button onclick="goToServiceSlide(1)" class="services-slider-dot h-1.5 rounded-full transition-all duration-300 bg-neutral-800 w-2" aria-label="Serviço 2"></button>
+          <button onclick="goToServiceSlide(2)" class="services-slider-dot h-1.5 rounded-full transition-all duration-300 bg-neutral-800 w-2" aria-label="Serviço 3"></button>
+          <button onclick="goToServiceSlide(3)" class="services-slider-dot h-1.5 rounded-full transition-all duration-300 bg-neutral-800 w-2" aria-label="Serviço 4"></button>
+          <button onclick="goToServiceSlide(4)" class="services-slider-dot h-1.5 rounded-full transition-all duration-300 bg-neutral-800 w-2" aria-label="Serviço 5"></button>
+          <button onclick="goToServiceSlide(5)" class="services-slider-dot h-1.5 rounded-full transition-all duration-300 bg-neutral-800 w-2" aria-label="Serviço 6"></button>
+          <button onclick="goToServiceSlide(6)" class="services-slider-dot h-1.5 rounded-full transition-all duration-300 bg-neutral-800 w-2" aria-label="Serviço 7"></button>
+          <button onclick="goToServiceSlide(7)" class="services-slider-dot h-1.5 rounded-full transition-all duration-300 bg-neutral-800 w-2" aria-label="Serviço 8"></button>
+        </div>
+        <div class="flex sm:hidden items-center justify-center gap-2 mt-3 text-[10px] font-mono text-neutral-500 uppercase tracking-widest">
+          <i class="fa-solid fa-arrows-left-right text-[11px]"></i>
+          <span>Desliza para ver todos os serviços</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== CARTÃO CLIENTE: SISTEMA DE LEALDADE (FOCO P&B) ==================== -->
+  <section id="cartao" class="py-24 bg-[#0f0f0f] border-b border-neutral-800 relative overflow-hidden">
+    <!-- Marca de Água do Selo de Lealdade com Parallax -->
+    <div class="absolute right-4 top-1/2 -translate-y-1/2 w-80 h-80 opacity-[0.025] pointer-events-none select-none text-white parallax-bg hidden lg:block" aria-hidden="true">
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" class="w-full h-full">
+        <polygon points="50,10 62,38 92,38 67,56 77,85 50,68 23,85 33,56 8,38 38,38" stroke-width="1.8"/>
+        <circle cx="50" cy="50" r="42" stroke-dasharray="3 3"/>
+      </svg>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+      
+      <!-- Foto Real do Cartão Cliente em Cores Originais com Moldura P&B -->
+      <div class="lg:col-span-5 reveal reveal-left">
+        <div class="border border-neutral-800 p-2.5 bg-[#141414] shadow-xl shadow-black/60 rounded-sm relative">
+          <div class="absolute -top-1 left-6 px-3 py-0.5 bg-neutral-900 border border-neutral-700 text-white font-mono text-[9px] uppercase tracking-widest font-bold flex items-center">
+            <span>FIDELIDADE OFICIAL</span>
+          </div>
+          <div class="overflow-hidden">
+            <img
+              src="assets/images/cartao_cliente.jpeg"
+              alt="Cartão de Cliente real da Barbearia Clandestina"
+              class="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-500 rounded-sm"
+            >
+          </div>
+          <div class="p-4 border-t border-neutral-800 flex items-center justify-between font-mono text-xs text-neutral-400">
+            <span class="text-white font-semibold">
+              CADERNETA DE FIDELIDADE
+            </span>
+            <span class="text-neutral-300 font-bold">10 CARIMBOS = 1 CORTE GRÁTIS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conteúdo Informativo do Cartão Cliente (Sem Carimbos Interativos) -->
+      <div class="lg:col-span-7 reveal">
+        <div class="font-mono text-xs text-neutral-400 uppercase tracking-widest mb-2">
+          <span>SISTEMA DE LEALDADE CLANDESTINA</span>
+        </div>
+        <h3 class="font-title text-4xl sm:text-6xl text-white tracking-tight uppercase mb-4 leading-none">
+          QUEM É CLANDESTINO TEM VANTAGENS.
+        </h3>
+        
+        <p class="text-neutral-300 text-sm leading-relaxed mb-6 font-sans">
+          Cada visita com serviço de corte de cabelo ou barba dá direito a um carimbo oficial. Ao completares a caderneta com 10 carimbos, o teu décimo corte fica inteiramente por nossa conta como agradecimento pela tua lealdade à casa.
+        </p>
+
+        <!-- Benefícios Estruturados do Cartão -->
+        <div class="border border-neutral-800 p-6 bg-[#141414] grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs rounded-sm shadow-md">
+          <div class="border-l-2 border-white pl-3">
+            <span class="text-white font-bold block text-sm mb-1">10º CORTE GRÁTIS</span>
+            <span class="text-neutral-400 font-sans">Caderneta completa com 10 carimbos garante 1 corte 100% de oferta.</span>
+          </div>
+          <div class="border-l-2 border-white pl-3">
+            <span class="text-white font-bold block text-sm mb-1">SEM CUSTOS NEM APP</span>
+            <span class="text-neutral-400 font-sans">Cartão físico para a tua carteira, sem mensalidades nem aplicações.</span>
+          </div>
+          <div class="border-l-2 border-neutral-600 pl-3">
+            <span class="text-white font-bold block text-sm mb-1">SEM DATA DE EXPIRAÇÃO</span>
+            <span class="text-neutral-400 font-sans">Acumula os teus carimbos ao teu próprio ritmo, sem prazos limite.</span>
+          </div>
+          <div class="border-l-2 border-white pl-3">
+            <span class="text-white font-bold block text-sm mb-1">PEDE AO TEU BARBEIRO</span>
+            <span class="text-neutral-400 font-sans">Solicita o teu cartão gratuito diretamente na cadeira na tua visita.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== GALERIA: A NOSSA CASA & TRABALHOS (FOCO P&B) ==================== -->
+  <section id="galeria" class="py-24 bg-[#0a0a0a] border-b border-neutral-800 relative overflow-hidden">
+    <!-- Marca de Água Atmosférica do Barber Pole com Parallax -->
+    <div class="absolute right-6 top-1/2 -translate-y-1/2 w-80 h-80 opacity-[0.025] pointer-events-none select-none text-white parallax-bg hidden lg:block" aria-hidden="true">
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" class="w-full h-full">
+        <rect x="35" y="20" width="30" height="60" rx="15" />
+        <line x1="35" y1="35" x2="65" y2="50" stroke-width="2" />
+        <line x1="35" y1="50" x2="65" y2="65" stroke-width="2" />
+        <circle cx="50" cy="12" r="8" fill="currentColor" />
+        <rect x="30" y="80" width="40" height="8" rx="2" fill="currentColor" />
+      </svg>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 border-b border-neutral-800 pb-6 reveal">
+        <div>
+          <div class="font-mono text-xs text-neutral-400 uppercase tracking-widest mb-2">
+            <span>A NOSSA CASA • AMBIENTE & TRABALHO REAL</span>
+          </div>
+          <h2 class="font-title text-4xl sm:text-6xl text-white tracking-tight uppercase">
+            TRABALHO REAL. CUIDADO SEM PRESSAS.
+          </h2>
+        </div>
+        <a href="https://instagram.com/abarbeariaclandestina" target="_blank" class="interactive-el font-mono text-xs text-neutral-300 hover:text-white uppercase tracking-wider flex items-center gap-2 mt-4 md:mt-0 px-3 py-1.5 border border-neutral-800 bg-neutral-900 hover:border-white transition-colors rounded-sm">
+          <i class="fa-brands fa-instagram text-base"></i>
+          <span>@abarbeariaclandestina</span>
+        </a>
+      </div>
+
+      <!-- Grade 4 Fotos Reais da Barbearia em Cores Normais com Cascata Fluida -->
+      <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Foto 1: 5 anos -->
+        <div onmouseenter="sound.playClick()" class="reveal stagger-1 razor-sheen-card border border-neutral-800 bg-[#121212] hover:border-neutral-500 p-2.5 cursor-pointer group rounded-sm shadow-md transition-all" onclick="openPhoto('assets/images/5_anos.jpg', '5 Anos de Barbearia Clandestina em Abrantes')">
+          <div class="aspect-square overflow-hidden bg-black relative rounded-sm">
+            <img src="assets/images/5_anos.jpg" alt="5 Anos de Barbearia Clandestina em Abrantes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center font-mono text-xs text-white uppercase tracking-wider">
+              <span class="px-3 py-1 bg-black/90 border border-white text-white font-bold">[AMPLIAR FOTOGRAFIA]</span>
+            </div>
+          </div>
+          <div class="p-3 font-mono text-[11px] text-neutral-400 uppercase flex justify-between">
+            <span class="text-white font-bold">REGISTO #01</span>
+            <span>5 ANOS EM ABRANTES</span>
+          </div>
+        </div>
+
+        <!-- Foto 2: Arte Tesoura -->
+        <div onmouseenter="sound.playClick()" class="reveal stagger-2 razor-sheen-card border border-neutral-800 bg-[#121212] hover:border-neutral-500 p-2.5 cursor-pointer group rounded-sm shadow-md transition-all" onclick="openPhoto('assets/images/arte_tesoura.jpg', 'A Arte e o Detalhe da Tesoura de Barbeiro')">
+          <div class="aspect-square overflow-hidden bg-black relative rounded-sm">
+            <img src="assets/images/arte_tesoura.jpg" alt="A arte e o detalhe da tesoura de barbeiro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center font-mono text-xs text-white uppercase tracking-wider">
+              <span class="px-3 py-1 bg-black/90 border border-white text-white font-bold">[AMPLIAR FOTOGRAFIA]</span>
+            </div>
+          </div>
+          <div class="p-3 font-mono text-[11px] text-neutral-400 uppercase flex justify-between">
+            <span class="text-white font-bold">REGISTO #02</span>
+            <span>ARTE NA TESOURA</span>
+          </div>
+        </div>
+
+        <!-- Foto 3: Life Clandestina -->
+        <div onmouseenter="sound.playClick()" class="reveal stagger-3 razor-sheen-card border border-neutral-800 bg-[#121212] hover:border-neutral-500 p-2.5 cursor-pointer group rounded-sm shadow-md transition-all" onclick="openPhoto('assets/images/life_clandestina.jpg', 'Ambiente da Barbearia Clandestina')">
+          <div class="aspect-square overflow-hidden bg-black relative rounded-sm">
+            <img src="assets/images/life_clandestina.jpg" alt="Ambiente da Barbearia Clandestina" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center font-mono text-xs text-white uppercase tracking-wider">
+              <span class="px-3 py-1 bg-black/90 border border-white text-white font-bold">[AMPLIAR FOTOGRAFIA]</span>
+            </div>
+          </div>
+          <div class="p-3 font-mono text-[11px] text-neutral-400 uppercase flex justify-between">
+            <span class="text-white font-bold">REGISTO #03</span>
+            <span>O ESPAÇO REAL</span>
+          </div>
+        </div>
+
+        <!-- Foto 4: Cartão Cliente -->
+        <div onmouseenter="sound.playClick()" class="reveal stagger-4 razor-sheen-card border border-neutral-800 bg-[#121212] hover:border-neutral-500 p-2.5 cursor-pointer group rounded-sm shadow-md transition-all" onclick="openPhoto('assets/images/cartao_cliente.jpeg', 'Cartão Cliente e Sistema de Lealdade')">
+          <div class="aspect-square overflow-hidden bg-black relative rounded-sm">
+            <img src="assets/images/cartao_cliente.jpeg" alt="Cartão Cliente e Sistema de Lealdade" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center font-mono text-xs text-white uppercase tracking-wider">
+              <span class="px-3 py-1 bg-black/90 border border-white text-white font-bold">[AMPLIAR FOTOGRAFIA]</span>
+            </div>
+          </div>
+          <div class="p-3 font-mono text-[11px] text-neutral-400 uppercase flex justify-between">
+            <span class="text-white font-bold">REGISTO #04</span>
+            <span>CADERNETA & LEALDADE</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==================== AVALIAÇÕES & FEEDBACKS DOS CLIENTES (FOCO P&B) ==================== -->
+  <section id="feedbacks" class="py-24 bg-[#080808] border-b border-neutral-800 relative overflow-hidden">
+    <!-- Fita Barber Pole de Acabamento -->
+    <div class="barber-pole-ribbon h-[2px] w-full absolute top-0 left-0 opacity-40"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      
+      <!-- Cabeçalho da Secção -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 border-b border-neutral-800 pb-6 reveal">
+        <div>
+          <div class="font-mono text-xs text-neutral-400 uppercase tracking-widest mb-2 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-white"></span>
+            <span>PALAVRA DE QUEM SENTA NA CADEIRA • AVALIAÇÕES REAIS</span>
+          </div>
+          <h2 class="font-title text-4xl sm:text-6xl text-white tracking-tight uppercase">
+            A VOZ DOS NOSSOS CLIENTES
+          </h2>
+        </div>
+
+        <div class="mt-6 md:mt-0 flex items-center gap-4">
+          <div class="p-3 bg-[#121212] border border-neutral-800 rounded-sm font-mono text-xs">
+            <div class="flex items-center gap-1.5 text-white mb-0.5">
+              <i class="fa-solid fa-star text-white"></i>
+              <i class="fa-solid fa-star text-white"></i>
+              <i class="fa-solid fa-star text-white"></i>
+              <i class="fa-solid fa-star text-white"></i>
+              <i class="fa-solid fa-star text-white"></i>
+              <span class="font-bold text-white ml-1">5.0 / 5.0</span>
+            </div>
+            <span class="text-[10px] text-neutral-400 uppercase tracking-wider block">Satisfação Máxima • Abrantes</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grade Dinâmica de Feedbacks (Sincronizada em Direto com o Dashboard) -->
+      <div id="feedbacks-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Renderizado dinamicamente por loadLiveFeedbacks() -->
+      </div>
+
+      <!-- Chamada para Ação no Fim dos Feedbacks -->
+      <div class="mt-14 pt-8 border-t border-neutral-850 flex flex-col sm:flex-row items-center justify-between gap-6 reveal">
+        <div class="font-mono text-xs text-neutral-400">
+          <span class="text-white font-bold block uppercase mb-1">JÁ VISITASTE A BARBEARIA CLANDESTINA?</span>
+          <span>A tua palavra é o nosso maior padrão de qualidade. Agenda a tua próxima cadeira ou deixa o teu feedback.</span>
+        </div>
+
+        <button onclick="openBookingModal('Geral')" class="interactive-el px-8 py-3.5 bg-white hover:bg-neutral-200 text-black font-title text-lg uppercase tracking-wider transition-all shadow-lg active:scale-95 flex items-center gap-2 whitespace-nowrap rounded-sm font-bold">
+          <span>RESERVAR CADEIRA</span>
+          <i class="fa-solid fa-scissors text-xs"></i>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== LOCALIZAÇÃO & HORÁRIOS (FOCO P&B) ==================== -->
+  <section id="contacto" class="py-24 bg-[#0f0f0f] border-b border-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Detalhes -->
+      <div class="lg:col-span-6 reveal">
+        <div class="font-mono text-xs text-neutral-400 uppercase tracking-widest mb-2">
+          <span>LOCALIZAÇÃO & HORÁRIOS</span>
+        </div>
+        <h2 class="font-title text-4xl sm:text-6xl text-white tracking-tight uppercase mb-8 leading-none">
+          O TEU PONTO DE ENCONTRO EM ABRANTES.
+        </h2>
+
+        <div class="space-y-6 font-mono text-xs mb-8">
+          <div class="border-l-2 border-white pl-4 bg-[#141414] p-3 rounded-r-sm">
+            <span class="text-neutral-400 uppercase font-bold block mb-1">LOCALIZAÇÃO:</span>
+            <span class="text-white text-sm font-sans font-semibold">Abrantes, Portugal (Centro Histórico)</span>
+          </div>
+
+          <div class="border-l-2 border-white pl-4 bg-[#141414] p-3 rounded-r-sm">
+            <span class="text-neutral-400 uppercase font-bold block mb-1">HORÁRIO DE FUNCIONAMENTO:</span>
+            <span class="text-white">Segunda a Sexta: <strong class="text-white">10:00 às 20:00</strong></span><br>
+            <span class="text-white">Sábado: <strong class="text-white">09:20 às 13:00</strong></span><br>
+            <span class="text-neutral-500">Domingo: Encerrado para descanso semanal</span>
+          </div>
+
+          <div class="border-l-2 border-white pl-4 bg-[#141414] p-3 rounded-r-sm">
+            <span class="text-neutral-400 uppercase font-bold block mb-1">AGENDAMENTO ONLINE OFICIAL:</span>
+            <a href="https://linktr.ee/Barbeariaclandestina" target="_blank" class="text-white hover:underline font-semibold">
+              linktr.ee/Barbeariaclandestina
+            </a>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <button onclick="openBookingModal('Geral')" class="interactive-el w-full sm:w-auto px-8 py-3.5 sm:py-4 bg-white hover:bg-neutral-200 text-black font-title text-lg sm:text-xl uppercase tracking-wider transition-all shadow-lg shadow-black/50 active:scale-95 flex items-center justify-center gap-2">
+            <span>Marcar Horário</span>
+            <i class="fa-solid fa-scissors text-xs"></i>
+          </button>
+          <a href="https://maps.google.com/?q=Abrantes+Portugal" target="_blank" class="interactive-el w-full sm:w-auto px-8 py-3.5 sm:py-4 border border-neutral-700 bg-neutral-900 hover:border-white text-white font-title text-lg sm:text-xl uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md">
+            <span>Abrir no Google Maps</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Mapa Normal a Cores Naturais (Nítido e Legível) -->
+      <div class="lg:col-span-6 reveal">
+        <div class="border border-neutral-800 bg-[#141414] p-2.5 shadow-xl shadow-black/60 rounded-sm">
+          <div class="h-64 sm:h-96 w-full overflow-hidden bg-neutral-950 relative rounded-sm">
+            <iframe 
+              title="Mapa de Abrantes"
+              class="w-full h-full border-0 pointer-events-none sm:pointer-events-auto"
+              src="https://maps.google.com/maps?q=Abrantes%20Portugal&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+              frameborder="0" 
+              scrolling="no">
+            </iframe>
+          </div>
+          <div class="p-3 font-mono text-[10px] text-neutral-400 uppercase flex justify-between">
+            <span class="flex items-center gap-1.5 text-white font-bold">
+              <i class="fa-solid fa-location-dot text-white"></i> GPS: 39.4637° N, 8.1983° W
+            </span>
+            <span class="text-neutral-400 font-bold">ABRANTES • CENTRO HISTÓRICO</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER (FOCO P&B COM ACENTO BARBER POLE) ==================== -->
+  <footer class="bg-[#080808] border-t border-neutral-800 font-mono text-xs text-neutral-400 relative">
+    <!-- Fita Barber Pole Superior Sutil -->
+    <div class="barber-pole-ribbon h-[2.5px] w-full"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-12 pb-24 md:pb-12 flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <div class="flex items-center gap-4">
+        <img src="assets/images/logo.jpg" alt="Logo Barbearia Clandestina" class="h-9 w-auto border border-neutral-800 rounded-sm shadow-sm">
+        <span class="text-white font-title text-xl uppercase tracking-wide">BARBEARIA CLANDESTINA</span>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <a href="https://instagram.com/abarbeariaclandestina" target="_blank" class="text-neutral-400 hover:text-white transition-colors flex items-center gap-1.5">
+          <i class="fa-brands fa-instagram"></i> Instagram
+        </a>
+        <a href="https://linktr.ee/Barbeariaclandestina" target="_blank" class="text-neutral-400 hover:text-white transition-colors flex items-center gap-1.5">
+          <i class="fa-solid fa-link"></i> Linktree
+        </a>
+        <a href="https://www.livroreclamacoes.pt/" target="_blank" class="text-neutral-500 hover:text-white transition-colors">Livro de Reclamações</a>
+        <a href="dashboard.html" class="text-neutral-500 hover:text-white transition-colors flex items-center gap-1 text-[11px]" title="Área de Gestão da Galeria">
+          <i class="fa-solid fa-lock text-[10px]"></i> Painel
+        </a>
+      </div>
+
+      <div class="text-neutral-500">
+        © 2026 BARBEARIA CLANDESTINA • ABRANTES.
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==================== BARRA RÁPIDA FIXA MOBILE (BOTTOM DOCK) ==================== -->
+  <div id="mobile-bottom-dock" class="fixed bottom-0 left-0 w-full z-40 md:hidden bg-[#0c0c0c]/95 backdrop-blur-md border-t border-neutral-800 px-3 py-2 pb-safe shadow-[0_-10px_25px_rgba(0,0,0,0.8)]">
+    <div class="flex items-center gap-2 max-w-md mx-auto">
+      <a href="https://api.whatsapp.com/send?phone=+351912345678&text=Ol%C3%A1%20Barbearia%20Clandestina!%20Gostaria%20de%20marcar%20um%20hor%C3%A1rio." target="_blank" class="flex-1 py-2.5 px-2 bg-neutral-900 border border-neutral-800 hover:border-neutral-600 text-white font-mono text-[10px] uppercase tracking-wider flex items-center justify-center gap-1.5 rounded-sm active:scale-95 transition-all">
+        <i class="fa-brands fa-whatsapp text-emerald-500 text-sm"></i>
+        <span>WhatsApp</span>
+      </a>
+      <button onclick="openBookingModal('Geral')" class="flex-[1.5] py-2.5 px-3 bg-white hover:bg-neutral-200 text-black font-title text-sm uppercase tracking-wider flex items-center justify-center gap-2 rounded-sm shadow-md active:scale-95 transition-all font-bold">
+        <span>MARCAR CADEIRA</span>
+        <i class="fa-solid fa-scissors text-xs"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL DE MARCAÇÃO (FOCO P&B) ==================== -->
+  <div id="booking-modal" class="fixed inset-0 z-[120] bg-black/85 backdrop-blur-md hidden items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="border border-neutral-700 bg-[#121212] w-full max-w-md p-5 sm:p-8 relative shadow-2xl rounded-sm my-auto max-h-[92vh] overflow-y-auto">
+      <!-- Fita Barber Pole no Topo do Modal -->
+      <div class="barber-pole-ribbon h-[2.5px] w-full absolute top-0 left-0"></div>
+      
+      <button onclick="closeBookingModal()" class="interactive-el absolute top-6 right-6 text-neutral-400 hover:text-white text-xl">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <span class="font-mono text-xs text-neutral-400 uppercase tracking-widest block mb-2 font-bold">[MARCAÇÃO DIRETA]</span>
+      <h3 class="font-title text-4xl text-white uppercase mb-6">RESERVAR CADEIRA</h3>
+
+      <form id="booking-form" onsubmit="handleBooking(event)" class="space-y-3.5 sm:space-y-4 font-mono text-xs">
+        <div>
+          <label class="block text-neutral-400 mb-1 uppercase text-[11px] sm:text-xs">Nome Completo</label>
+          <input type="text" id="b-name" required placeholder="Ex: Diogo Silva" class="w-full bg-neutral-900 border border-neutral-800 focus:border-white px-4 py-3 text-base sm:text-xs text-white outline-none rounded-sm">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+          <div>
+            <label class="block text-neutral-400 mb-1 uppercase text-[11px] sm:text-xs">Contacto</label>
+            <input type="tel" id="b-phone" required placeholder="912 345 678" class="w-full bg-neutral-900 border border-neutral-800 focus:border-white px-4 py-3 text-base sm:text-xs text-white outline-none rounded-sm">
+          </div>
+          <div>
+            <label class="block text-neutral-400 mb-1 uppercase text-[11px] sm:text-xs">Serviço</label>
+            <select id="b-service" class="w-full bg-neutral-900 border border-neutral-800 focus:border-white px-4 py-3 text-base sm:text-xs text-white outline-none rounded-sm">
+              <option value="Corte">Corte (15 €)</option>
+              <option value="Cabelo + Barba">Cabelo + Barba (21 €)</option>
+              <option value="Corte + Barboterapia" selected>Corte + Barboterapia (23 €)</option>
+              <option value="Barba (c/ toalha quente)">Barba (c/ toalha quente) (8 €)</option>
+              <option value="Corte sénior (+60 anos)">Corte sénior (+60 anos) (12 €)</option>
+              <option value="Barboterapia">Barboterapia (11 €)</option>
+              <option value="Corte + tratamento de rosto">Corte + tratamento de rosto (34 €)</option>
+              <option value="Tratamento de rosto">Tratamento de rosto (21 €)</option>
+              <option value="Cartão Cliente">Pedir Cartão Fidelidade</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+          <div>
+            <label class="block text-neutral-400 mb-1 uppercase text-[11px] sm:text-xs">Dia</label>
+            <input type="date" id="b-date" required class="w-full bg-neutral-900 border border-neutral-800 focus:border-white px-4 py-3 text-base sm:text-xs text-white outline-none rounded-sm">
+          </div>
+          <div>
+            <label class="block text-neutral-400 mb-1 uppercase text-[11px] sm:text-xs">Hora</label>
+            <input type="time" id="b-time" required class="w-full bg-neutral-900 border border-neutral-800 focus:border-white px-4 py-3 text-base sm:text-xs text-white outline-none rounded-sm">
+          </div>
+        </div>
+
+        <div class="pt-2 sm:pt-4">
+          <button type="submit" class="interactive-el w-full py-3.5 sm:py-4 bg-white hover:bg-neutral-200 text-black font-title text-lg sm:text-xl uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg active:scale-95 rounded-sm">
+            <i class="fa-brands fa-whatsapp text-2xl text-emerald-600"></i>
+            <span>Confirmar por WhatsApp</span>
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- ==================== LIGHTBOX DE FOTOGRAFIA EM CORES REAIS ==================== -->
+  <div id="photo-modal" class="fixed inset-0 z-[130] bg-black/95 backdrop-blur-md hidden items-center justify-center p-3 sm:p-4">
+    <button onclick="closePhoto()" aria-label="Fechar Fotografia" class="interactive-el absolute top-4 right-4 sm:top-6 sm:right-6 text-white text-xl sm:text-2xl hover:text-neutral-400 w-11 h-11 bg-neutral-900/80 border border-neutral-800 rounded-sm flex items-center justify-center active:scale-95">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="max-w-4xl max-h-[88vh] flex flex-col items-center p-2">
+      <div class="border border-neutral-800 p-2 sm:p-2.5 bg-[#121212] rounded-sm shadow-2xl">
+        <img id="modal-photo-img" src="" alt="" class="max-h-[65vh] sm:max-h-[70vh] w-auto object-contain rounded-sm">
+      </div>
+      <p class="font-mono text-xs text-white uppercase tracking-widest mt-3 text-center px-4">
+        <span id="modal-photo-caption"></span>
+      </p>
+    </div>
+  </div>
+
+  <!-- Lógica e Efeitos Interativos da Barbearia (JavaScript Externo) -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

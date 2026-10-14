@@ -1,0 +1,44 @@
+body {
+      background-color: #080808;
+      color: #e5e5e5;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Fita Barber Pole Monocromática: Preto e Branco */
+    .barber-pole-ribbon {
+      background: repeating-linear-gradient(
+        -45deg,
+        #ffffff,
+        #ffffff 14px,
+        #121212 14px,
+        #121212 28px
+      );
+      background-size: 39.6px 39.6px;
+      animation: barberPoleScroll 2s linear infinite;
+    }
+    @keyframes barberPoleScroll {
+      0% { background-position: 0 0; }
+      100% { background-position: 39.6px 0; }
+    }
+
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #0d0d0d;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #262626;
+      border-radius: 2px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #ffffff;
+    }
+
+    /* Efeito de drop shadow brutalista */
+    .brutal-card {
+      background: #121212;
+      border: 1px solid #222222;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }

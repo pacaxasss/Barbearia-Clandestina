@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="pt" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barbearia Clandestina | Abrantes • Modo Clandestino</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Fontes Google (Cinzel para elegância vintage & Plus Jakarta Sans para leitura) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Ícones Phosphor / Feather -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clandestina: {
+              black: '#0D0D0E',
+              dark: '#141416',
+              card: '#1C1C1F',
+              gold: '#F5F5F5',
+              goldLight: '#FFFFFF',
+              goldDark: '#D4D4D4',
+              muted: '#B5B5B5',
+            }
+          },
+          fontFamily: {
+            serif: ['Cinzel', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #0D0D0E;
+      color: #E2E2E8;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    img, svg, video {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FFFFFF 0%, #E5E5E5 50%, #A1A1AA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gold-border-glow:hover {
+      border-color: #F5F5F5;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.12);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px) scale(0.98);
+      transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+      will-change: opacity, transform;
+      filter: blur(4px);
+    }
+
+    .reveal-left {
+      transform: translateX(-40px) scale(0.98);
+    }
+
+    .reveal-right {
+      transform: translateX(40px) scale(0.98);
+    }
+
+    .reveal-scale {
+      transform: scale(0.92);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0) translateX(0) scale(1);
+      filter: blur(0);
+    }
+  </style>
+</head>
+<body class="selection:bg-clandestina-gold selection:text-black">
+
+  <!-- ==================== HEADER (NAVBAR) ==================== -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-clandestina-black/90 backdrop-blur-md border-b border-white/5 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#home" class="flex items-center group shrink-0">
+        <img
+          src="logo.jpg"
+          alt="Logo Barbearia Clandestina"
+          class="h-10 md:h-14 w-auto object-contain"
+        >
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-clandestina-muted">
+        <a href="#home" class="hover:text-white transition-colors">Home</a>
+        <a href="#quemsomos" class="hover:text-white transition-colors">Quem somos</a>
+        <a href="#servicos" class="hover:text-white transition-colors">Serviços</a>
+        <a href="#cartao" class="hover:text-white transition-colors">Cartão Cliente</a>
+        <a href="#feed" class="hover:text-white transition-colors">Instagram</a>
+        <a href="#ondeestamos" class="hover:text-white transition-colors">Onde estamos</a>
+      </nav>
+
+      <!-- Botão de Marcação Principal (Estilo 26 de Junho) -->
+      <div class="flex items-center gap-2 sm:gap-4">
+        <button onclick="openBookingModal('Geral')" class="hidden sm:flex px-6 py-2.5 bg-clandestina-gold hover:bg-clandestina-goldLight text-black font-semibold text-xs tracking-wider uppercase rounded-full transition-all duration-300 shadow-lg shadow-clandestina-gold/20 items-center gap-2">
+          <span>Marcar</span>
+          <i class="fa-regular fa-calendar-check"></i>
+        </button>
+        <!-- Mobile Menu Toggle -->
+        <button id="menu-btn" class="md:hidden text-white text-xl focus:outline-none p-2 rounded-lg hover:bg-white/5">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden bg-clandestina-dark border-b border-white/10 px-4 py-5 flex flex-col gap-4 text-sm font-medium">
+      <a href="#home" class="mobile-link text-white">Home</a>
+      <a href="#quemsomos" class="mobile-link text-clandestina-muted hover:text-white">Quem somos</a>
+      <a href="#servicos" class="mobile-link text-clandestina-muted hover:text-white">Serviços</a>
+      <a href="#cartao" class="mobile-link text-clandestina-muted hover:text-white">Cartão Cliente</a>
+      <a href="#feed" class="mobile-link text-clandestina-muted hover:text-white">Instagram</a>
+      <a href="#ondeestamos" class="mobile-link text-clandestina-muted hover:text-white">Onde estamos</a>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section id="home" class="reveal reveal-scale relative pt-32 pb-16 md:pt-48 md:pb-32 overflow-hidden flex flex-col justify-center items-center text-center px-4 sm:px-6">
+    <!-- Ambient Light Effects -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-white/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-2">
+      <div class="w-full lg:w-[42%] flex justify-center lg:justify-start lg:-ml-10 xl:-ml-16">
+        <img
+          src="logo_semfundo.png"
+          alt="Logo Barbearia Clandestina"
+          class="w-[260px] sm:w-[320px] md:w-[360px] lg:w-[430px] xl:w-[500px] object-contain drop-shadow-[0_0_28px_rgba(255,255,255,0.08)]"
+        >
+      </div>
+
+      <div class="max-w-2xl lg:max-w-xl text-center lg:text-left">
+        <!-- Tagline / Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-clandestina-gold/30 bg-clandestina-card/80 backdrop-blur text-clandestina-gold text-xs uppercase tracking-widest mb-6">
+          <span class="w-2 h-2 rounded-full bg-clandestina-gold animate-pulse"></span>
+          Mais de 5 anos em modo clandestino
+        </div>
+
+        <!-- Main Heading -->
+        <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-5xl xl:text-6xl font-serif font-extrabold uppercase tracking-tight text-white mb-6 leading-[0.9]">
+          Barbearia <br><span class="gold-gradient-text font-serif">Clandestina</span>
+        </h1>
+
+        <!-- Slogan (Referência 26 de Junho: Fear The Buffalo -> Modo Clandestino) -->
+        <p class="font-serif italic text-xl md:text-2xl text-clandestina-goldLight/90 tracking-wide mb-8">
+          "Entra em Modo Clandestino."
+        </p>
+
+        <!-- Prova Social no Hero (Idêntico ao destaque da Barbearia 26) -->
+        <div class="max-w-2xl lg:max-w-xl mx-auto lg:mx-0 bg-clandestina-card/60 border border-white/5 p-6 rounded-2xl mb-10 backdrop-blur-sm">
+          <div class="flex items-center justify-center lg:justify-start gap-1 text-clandestina-gold text-sm mb-3">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-sm md:text-base text-gray-300 italic">
+            "Espaço impecável, ambiente descontraído e a melhor toalha quente e barba de Abrantes. Uma referência de atendimento e dedicação!"
+          </p>
+          <span class="block text-xs uppercase tracking-wider text-clandestina-muted mt-3 font-semibold">— Avaliação de Cliente Habitual</span>
+        </div>
+
+        <!-- Hero Actions -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-stretch w-full max-w-md sm:max-w-none mx-auto lg:mx-0">
+          <button onclick="openBookingModal('Geral')" class="w-full sm:w-auto px-8 py-3.5 bg-clandestina-gold hover:bg-clandestina-goldLight text-black font-bold text-xs uppercase tracking-widest rounded-full transition-all duration-300 shadow-xl shadow-clandestina-gold/20">
+            Marcar Horário
+          </button>
+          <a href="#servicos" class="w-full sm:w-auto px-8 py-3.5 bg-clandestina-card hover:bg-white/10 text-white font-semibold text-xs uppercase tracking-widest rounded-full border border-white/10 transition-colors text-center flex items-center justify-center">
+            Ver Serviços & Preços
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Info Strip -->
+    <div class="w-full max-w-5xl mx-auto mt-16 md:mt-20 pt-8 border-t border-white/5 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 text-left">
+      <div class="flex items-center gap-4 p-4 rounded-xl bg-clandestina-card/40 border border-white/5">
+        <div class="w-12 h-12 rounded-lg bg-neutral-800/70 border border-white/10 flex items-center justify-center text-white text-lg">
+          <i class="fa-solid fa-location-dot"></i>
+        </div>
+        <div>
+          <h4 class="text-xs uppercase tracking-wider text-clandestina-muted font-bold">Localização</h4>
+          <p class="text-sm text-white font-medium">Abrantes, Portugal</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4 p-4 rounded-xl bg-clandestina-card/40 border border-white/5">
+        <div class="w-12 h-12 rounded-lg bg-neutral-800/70 border border-white/10 flex items-center justify-center text-white text-lg">
+          <i class="fa-regular fa-clock"></i>
+        </div>
+        <div>
+          <h4 class="text-xs uppercase tracking-wider text-clandestina-muted font-bold">Horário Semanal</h4>
+          <p class="text-sm text-white font-medium">2ª a 6ª: 10:00 – 20:00</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4 p-4 rounded-xl bg-clandestina-card/40 border border-white/5">
+        <div class="w-12 h-12 rounded-lg bg-neutral-800/70 border border-white/10 flex items-center justify-center text-white text-lg">
+          <i class="fa-solid fa-calendar-day"></i>
+        </div>
+        <div>
+          <h4 class="text-xs uppercase tracking-wider text-clandestina-muted font-bold">Sábados</h4>
+          <p class="text-sm text-white font-medium">09:20 – 13:00</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== QUEM SOMOS ==================== -->
+  <section id="quemsomos" class="reveal py-24 bg-clandestina-dark relative">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      
+      <!-- Visual / Imagens com Moldura Speakeasy -->
+      <div class="relative">
+        <div class="relative z-10 rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-clandestina-card aspect-[4/3] flex items-center justify-center">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+          <!-- Placeholder de foto da barbearia / barbeiros -->
+          <div class="text-center p-8">
+            <i class="fa-solid fa-store text-5xl text-clandestina-gold/40 mb-4"></i>
+            <h4 class="font-serif text-xl text-white uppercase">Life at Clandestina</h4>
+            <p class="text-xs text-clandestina-muted mt-1">Ambiente reservado & atendimento exclusivo</p>
+          </div>
+          <div class="absolute bottom-6 left-6 right-6">
+            <span class="inline-block px-3 py-1 bg-clandestina-gold text-black font-bold text-xs uppercase rounded-md tracking-wider">
+              Desde 2019
+            </span>
+          </div>
+        </div>
+        <!-- Decorative Border Offset -->
+        <div class="absolute -bottom-4 -right-4 w-full h-full border border-clandestina-gold/20 rounded-2xl -z-0 hidden sm:block"></div>
+      </div>
+
+      <!-- Texto Institucional (Inspirado no 26 de Junho) -->
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-clandestina-gold block mb-3">A Nossa História</span>
+        <h2 class="text-3xl md:text-4xl font-serif font-bold text-white uppercase tracking-tight mb-6">
+          Tradição, navalha afiada e a tranquilidade que mereces.
+        </h2>
+        
+        <p class="text-clandestina-muted leading-relaxed mb-6">
+          A <strong class="text-white">Barbearia Clandestina</strong> nasceu em Abrantes com um propósito claro: resgatar o cuidado pessoal masculino à moda antiga, aliando a mestria da navalha tradicional a técnicas modernas de corte e styling.
+        </p>
+
+        <p class="text-clandestina-muted leading-relaxed mb-8">
+          Mais do que cortar o cabelo ou aparar a barba, oferecemos um refúgio para desacelerar: uma cadeira confortável, toalha quente aromática, boa música e conversa honesta. É por isso que celebramos mais de 5 anos de confiança com quem se senta connosco.
+        </p>
+
+        <div class="grid grid-cols-2 gap-6 pt-4 border-t border-white/5">
+          <div>
+            <span class="font-serif text-3xl font-bold text-clandestina-gold block">+5 Anos</span>
+            <span class="text-xs uppercase tracking-wider text-clandestina-muted">Em Modo Clandestino</span>
+          </div>
+          <div>
+            <span class="font-serif text-3xl font-bold text-clandestina-gold block">100%</span>
+            <span class="text-xs uppercase tracking-wider text-clandestina-muted">Atenção ao Detalhe</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== SERVIÇOS (ESTILO BARBEARIA 26 DE JUNHO) ==================== -->
+  <section id="servicos" class="reveal py-24 bg-clandestina-black relative">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-clandestina-gold block mb-2">Preçário Oficial</span>
+        <h2 class="text-3xl md:text-4xl font-serif font-bold text-white uppercase tracking-tight mb-4">
+          Serviços & Cuidados
+        </h2>
+        <p class="text-sm text-clandestina-muted">
+          Cada serviço inclui produtos de acabamento premium e consultoria de imagem personalizada.
+        </p>
+      </div>
+
+      <!-- Services Grid (Idêntica à estrutura da 26 de Junho: Icon + Titulo + Preço + Botão Marcar) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Card 1: Barba -->
+        <div class="bg-clandestina-card border border-white/5 rounded-2xl p-8 flex flex-col items-center text-center gold-border-glow transition-all duration-300 group">
+          <div class="w-16 h-16 rounded-full bg-clandestina-dark border border-white/10 flex items-center justify-center text-clandestina-gold text-2xl mb-6 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-beard"></i>
+          </div>
+          <h3 class="font-serif text-lg font-bold text-white uppercase mb-2">Barba</h3>
+          <p class="text-xs text-clandestina-muted mb-6">Tratamento com toalha quente, alinhamento à navalha e bálsamo.</p>
+          <div class="font-serif text-3xl font-bold text-clandestina-gold mb-6 mt-auto">
+            14 €
+          </div>
+          <button onclick="openBookingModal('Barba')" class="w-full py-2.5 bg-transparent hover:bg-clandestina-gold text-white hover:text-black font-semibold text-xs tracking-wider uppercase border border-clandestina-gold/40 hover:border-clandestina-gold rounded-xl transition-all">
+            Marcar
+          </button>
+        </div>
+
+        <!-- Card 2: Corte Curto -->
+        <div class="reveal bg-clandestina-card border border-white/5 rounded-2xl p-8 flex flex-col items-center text-center gold-border-glow transition-all duration-300 group" style="transition-delay: 120ms;">
+          <div class="w-16 h-16 rounded-full bg-clandestina-dark border border-white/10 flex items-center justify-center text-clandestina-gold text-2xl mb-6 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-scissors"></i>
+          </div>
+          <h3 class="font-serif text-lg font-bold text-white uppercase mb-2">Corte Curto</h3>
+          <p class="text-xs text-clandestina-muted mb-6">Corte à máquina/tesoura, lavagem relaxante e penteado final.</p>
+          <div class="font-serif text-3xl font-bold text-clandestina-gold mb-6 mt-auto">
+            15 €
+          </div>
+          <button onclick="openBookingModal('Corte Curto')" class="w-full py-2.5 bg-transparent hover:bg-clandestina-gold text-white hover:text-black font-semibold text-xs tracking-wider uppercase border border-clandestina-gold/40 hover:border-clandestina-gold rounded-xl transition-all">
+            Marcar
+          </button>
+        </div>
+
+        <!-- Card 3: Corte Longo / Clássico -->
+        <div class="reveal bg-clandestina-card border border-white/5 rounded-2xl p-8 flex flex-col items-center text-center gold-border-glow transition-all duration-300 group" style="transition-delay: 180ms;">
+          <div class="w-16 h-16 rounded-full bg-clandestina-dark border border-white/10 flex items-center justify-center text-clandestina-gold text-2xl mb-6 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-user-tie"></i>
+          </div>
+          <h3 class="font-serif text-lg font-bold text-white uppercase mb-2">Corte Longo</h3>
+          <p class="text-xs text-clandestina-muted mb-6">Trabalho de textura e tesoura dedicado para comprimentos médios e longos.</p>
+          <div class="font-serif text-3xl font-bold text-clandestina-gold mb-6 mt-auto">
+            20 €
+          </div>
+          <button onclick="openBookingModal('Corte Longo')" class="w-full py-2.5 bg-transparent hover:bg-clandestina-gold text-white hover:text-black font-semibold text-xs tracking-wider uppercase border border-clandestina-gold/40 hover:border-clandestina-gold rounded-xl transition-all">
+            Marcar
+          </button>
+        </div>
+
+        <!-- Card 4: Barba & Corte (Combo Destaque) -->
+        <div class="reveal bg-gradient-to-b from-clandestina-card to-[#232328] border-2 border-clandestina-gold/40 rounded-2xl p-8 flex flex-col items-center text-center gold-border-glow relative group" style="transition-delay: 240ms;">
+          <span class="absolute -top-3 px-3 py-0.5 bg-clandestina-gold text-black font-bold text-[10px] tracking-widest uppercase rounded-full">
+            Mais Procurado
+          </span>
+          <div class="w-16 h-16 rounded-full bg-neutral-800 border border-white/10 flex items-center justify-center text-white text-2xl mb-6 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-crown"></i>
+          </div>
+          <h3 class="font-serif text-lg font-bold text-white uppercase mb-2">Barba & Corte</h3>
+          <p class="text-xs text-clandestina-muted mb-6">A experiência completa Clandestina: corte estilizado + ritual de barba completo.</p>
+          <div class="font-serif text-3xl font-bold text-clandestina-gold mb-6 mt-auto">
+            24 €
+          </div>
+          <button onclick="openBookingModal('Barba & Corte')" class="w-full py-2.5 bg-clandestina-gold hover:bg-clandestina-goldLight text-black font-bold text-xs tracking-wider uppercase rounded-xl transition-all shadow-md shadow-clandestina-gold/20">
+            Marcar
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== DIFERENCIAL CLANDESTINA: CARTÃO CLIENTE ==================== -->
+  <section id="cartao" class="py-20 bg-clandestina-dark border-y border-white/5 relative">
+    <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      
+      <!-- Cartão Visual Mockup -->
+      <div class="bg-gradient-to-tr from-[#111113] via-[#1a1a1f] to-[#25252b] border border-white/10 rounded-2xl p-4 shadow-2xl relative overflow-hidden flex items-center justify-center min-h-[360px]">
+        <img
+          src="cartao_cliente.jpeg"
+          alt="Cartão cliente da Barbearia Clandestina"
+          class="w-full h-full max-h-[420px] object-contain rounded-xl"
+        >
+      </div>
+
+      <!-- Explicação -->
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-clandestina-gold block mb-2">Exclusivo em Abrantes</span>
+        <h3 class="text-3xl font-serif font-bold text-white uppercase mb-4">
+          Quem é clandestino tem vantagens.
+        </h3>
+        <p class="text-clandestina-muted text-sm leading-relaxed mb-6">
+          Viste os nossos cartões no Instagram? Cada visita com serviço de corte ou barba dá direito a um carimbo. Ao completares a caderneta, o teu décimo corte fica por nossa conta.
+        </p>
+        <ul class="space-y-3 text-sm text-gray-300 mb-8">
+          <li class="flex items-center gap-3">
+            <i class="fa-solid fa-circle-check text-clandestina-gold"></i>
+            <span>Sem custos de adesão nem complicações</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <i class="fa-solid fa-circle-check text-clandestina-gold"></i>
+            <span>Válido para marcações de 2ª a Sábado</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <i class="fa-solid fa-circle-check text-clandestina-gold"></i>
+            <span>Pede o teu diretamente ao teu barbeiro</span>
+          </li>
+        </ul>
+        <button onclick="openBookingModal('Cartão Cliente')" class="px-6 py-3 bg-clandestina-card hover:bg-white/10 text-white font-semibold text-xs uppercase tracking-wider rounded-xl border border-white/10 transition-colors">
+          Pedir na Minha Visita
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== FEED INSTAGRAM (ESTILO 26 DE JUNHO: "DESFRUTA O MOMENTO") ==================== -->
+  <section id="feed" class="py-24 bg-clandestina-black">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-clandestina-gold block mb-2">Comunidade & Estilo</span>
+          <h2 class="text-3xl font-serif font-bold text-white uppercase tracking-tight">
+            Desfruta o Momento.
+          </h2>
+          <p class="text-sm text-clandestina-muted mt-1">#barbeariaclandestina #modoclandestino #abrantes</p>
+        </div>
+        <a href="https://instagram.com/abarbeariaclandestina" target="_blank" class="mt-4 md:mt-0 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-clandestina-gold hover:text-white transition-colors">
+          <i class="fa-brands fa-instagram text-base"></i>
+          <span>@abarbeariaclandestina</span>
+        </a>
+      </div>
+
+      <!-- Feed Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        
+        <div class="group relative aspect-square rounded-xl overflow-hidden bg-clandestina-card border border-white/5 flex items-center justify-center cursor-pointer">
+          <img src="5_anos.jpg" alt="5 anos em modo clandestino">
+          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4 text-center">
+            <span class="text-xs text-white font-medium">"5 anos em modo clandestino 🎂"</span>
+          </div>
+        </div>
+
+        <div class="group relative aspect-square rounded-xl overflow-hidden bg-clandestina-card border border-white/5 flex items-center justify-center cursor-pointer">
+            <img src="arte_tesoura.jpg" alt="A arte e o detalhe da tesoura">
+          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4 text-center">
+            <span class="text-xs text-white font-medium">"A arte e o detalhe da tesoura."</span>
+          </div>
+        </div>
+
+        <div class="group relative aspect-square rounded-xl overflow-hidden bg-clandestina-card border border-white/5 flex items-center justify-center cursor-pointer">
+          <img src="life_clandestina.jpg" alt="Life at Clandestina: ambiente único">
+          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4 text-center">
+            <span class="text-xs text-white font-medium">"Life at Clandestina: ambiente único."</span>
+          </div>
+        </div>
+
+        <div class="group relative aspect-square rounded-xl overflow-hidden bg-clandestina-card border border-white/5 flex items-center justify-center cursor-pointer">
+          <img src="cartao_cliente.jpeg" alt="Já tens o teu Cartão Cliente?">
+          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4 text-center">
+            <span class="text-xs text-white font-medium">"Já tens o teu Cartão Cliente?"</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== GOOGLE REVIEWS (PROVA SOCIAL) ==================== -->
+  <section class="py-20 bg-clandestina-dark border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <!-- Avaliação Totalizada (Estilo 26 de Junho: 4.8 / 5 estrelas) -->
+      <div class="flex flex-col sm:flex-row items-center justify-between pb-12 border-b border-white/5 mb-12 gap-6">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <i class="fa-brands fa-google text-xl text-white"></i>
+            <span class="font-bold text-white text-sm">Classificação Google</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-3xl font-serif font-extrabold text-white">4.9</span>
+            <div class="flex text-white text-sm">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <span class="text-xs text-clandestina-muted font-medium">(Mais de 150 avaliações verificadas)</span>
+          </div>
+        </div>
+
+        <button onclick="openBookingModal('Geral')" class="px-6 py-2.5 bg-clandestina-gold hover:bg-clandestina-goldLight text-black text-xs font-bold uppercase tracking-wider rounded-full transition-all">
+          Agendar Agora
+        </button>
+      </div>
+
+      <!-- Testemunhos -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="bg-clandestina-card p-6 rounded-2xl border border-white/5">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center font-bold text-white text-sm">
+              PR
+            </div>
+            <div>
+              <h5 class="text-sm font-semibold text-white">Pedro Rodrigues</h5>
+              <div class="flex text-white text-xs">★★★★★</div>
+            </div>
+          </div>
+          <p class="text-xs text-clandestina-muted leading-relaxed">
+            "Excelente barbearia em Abrantes. O corte fica sempre impecável e a toalha quente na barba é um ritual que recomendo a todos."
+          </p>
+        </div>
+
+        <div class="bg-clandestina-card p-6 rounded-2xl border border-white/5">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center font-bold text-white text-sm">
+              MS
+            </div>
+            <div>
+              <h5 class="text-sm font-semibold text-white">Miguel Santos</h5>
+              <div class="flex text-white text-xs">★★★★★</div>
+            </div>
+          </div>
+          <p class="text-xs text-clandestina-muted leading-relaxed">
+            "Pontualidade exemplar, simpatia e muito bom gosto na decoração do espaço. Os rapazes sabem mesmo o que fazem."
+          </p>
+        </div>
+
+        <div class="bg-clandestina-card p-6 rounded-2xl border border-white/5">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center font-bold text-white text-sm">
+              TA
+            </div>
+            <div>
+              <h5 class="text-sm font-semibold text-white">Tiago Antunes</h5>
+              <div class="flex text-amber-400 text-xs">★★★★★</div>
+            </div>
+          </div>
+          <p class="text-xs text-clandestina-muted leading-relaxed">
+            "Corto cá desde que abriram há mais de 5 anos. O sistema do cartão cliente é top e o ambiente é do melhor que há na região."
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== ONDE ESTAMOS & HORÁRIOS ==================== -->
+  <section id="ondeestamos" class="py-24 bg-clandestina-black">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12">
+      
+      <!-- Detalhes de Contacto -->
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-clandestina-gold block mb-2">Visita-nos</span>
+        <h2 class="text-3xl font-serif font-bold text-white uppercase tracking-tight mb-6">
+          O Teu Ponto de Encontro em Abrantes.
+        </h2>
+        
+        <div class="space-y-6 text-sm text-clandestina-muted mb-8">
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 rounded-lg bg-clandestina-card flex items-center justify-center text-clandestina-gold shrink-0 mt-1">
+              <i class="fa-solid fa-map-pin"></i>
+            </div>
+            <div>
+              <strong class="text-white block">Morada:</strong>
+              <span>Abrantes, Portugal (Centro)</span>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 rounded-lg bg-clandestina-card flex items-center justify-center text-clandestina-gold shrink-0 mt-1">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+              <strong class="text-white block">Horário de Funcionamento:</strong>
+              <span>Segunda a Sexta: <strong>10:00 às 20:00</strong></span><br>
+              <span>Sábado: <strong>09:20 às 13:00</strong></span><br>
+              <span class="text-red-400/80">Domingo: Encerrado para descanso</span>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 rounded-lg bg-clandestina-card flex items-center justify-center text-clandestina-gold shrink-0 mt-1">
+              <i class="fa-solid fa-link"></i>
+            </div>
+            <div>
+              <strong class="text-white block">Marcações Oficiais:</strong>
+              <a href="https://linktr.ee/Barbeariaclandestina" target="_blank" class="text-clandestina-gold hover:underline">
+                linktr.ee/Barbeariaclandestina
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Abrantes+Portugal" target="_blank" class="px-6 py-3 bg-clandestina-card hover:bg-white/10 text-white font-semibold text-xs uppercase tracking-wider rounded-xl border border-white/10 transition-colors inline-flex items-center gap-2">
+            <i class="fa-solid fa-diamond-turn-right text-clandestina-gold"></i>
+            <span>Como Chegar (Maps)</span>
+          </a>
+          <button onclick="openBookingModal('Geral')" class="px-6 py-3 bg-clandestina-gold hover:bg-clandestina-goldLight text-black font-bold text-xs uppercase tracking-wider rounded-xl transition-all inline-flex items-center gap-2">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span>Agendar Cadeira</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mapa Placeholder Estilizado -->
+      <div class="h-96 rounded-2xl overflow-hidden border border-white/10 bg-clandestina-card relative flex items-center justify-center">
+        <iframe 
+          title="Mapa de Abrantes"
+          class="w-full h-full grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+          src="https://maps.google.com/maps?q=Abrantes%20Portugal&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+          frameborder="0" 
+          scrolling="no">
+        </iframe>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER (ESTILO 26 DE JUNHO COM LINKS LEGAIS) ==================== -->
+  <footer class="reveal bg-black py-16 border-t border-white/10 text-sm text-clandestina-muted">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        
+        <div class="md:col-span-2">
+          <div class="flex items-center mb-4">
+            <img
+              src="logo.jpg"
+              alt="Logo Barbearia Clandestina"
+              class="h-14 w-auto max-w-[220px] object-contain drop-shadow-[0_0_18px_rgba(255,255,255,0.12)]"
+            >
+          </div>
+          <p class="text-xs leading-relaxed max-w-sm mb-6">
+            Serviços de qualidade e corte de excelência no centro de Abrantes. Desfruta o momento e cuida da tua imagem connosco.
+          </p>
+          <div class="flex gap-4 text-white text-lg">
+            <a href="https://instagram.com/abarbeariaclandestina" target="_blank" class="hover:text-clandestina-gold transition-colors"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://linktr.ee/Barbeariaclandestina" target="_blank" class="hover:text-clandestina-gold transition-colors"><i class="fa-solid fa-globe"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h5 class="text-white font-bold uppercase text-xs tracking-wider mb-4">Menu</h5>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="#quemsomos" class="hover:text-white transition-colors">Quem somos</a></li>
+            <li><a href="#servicos" class="hover:text-white transition-colors">Serviços</a></li>
+            <li><a href="#cartao" class="hover:text-white transition-colors">Cartão Cliente</a></li>
+            <li><a href="#ondeestamos" class="hover:text-white transition-colors">Onde estamos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="text-white font-bold uppercase text-xs tracking-wider mb-4">Legal</h5>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#" class="hover:text-white transition-colors">Política de Privacidade</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Política de Cookies</a></li>
+            <li>
+              <a href="https://www.livroreclamacoes.pt/" target="_blank" class="hover:text-clandestina-gold transition-colors inline-flex items-center gap-1">
+                <span>Livro de Reclamações</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs gap-4">
+        <span>© 2026 Barbearia Clandestina. Todos os direitos reservados.</span>
+        <span class="text-clandestina-gold">Desenvolvido com padrão Speakeasy</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL DE MARCAÇÃO DIRETA ==================== -->
+  <div id="booking-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-clandestina-card border border-clandestina-gold/30 rounded-2xl w-full max-w-lg p-6 md:p-8 relative shadow-2xl">
+      
+      <!-- Close Button -->
+      <button onclick="closeBookingModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-xl">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <span class="text-xs uppercase tracking-widest text-clandestina-gold font-bold block mb-1">Agendamento Fácil</span>
+      <h3 class="font-serif text-2xl font-bold text-white uppercase mb-6">Reservar Horário</h3>
+
+      <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block text-gray-300 font-semibold mb-1">Nome Completo</label>
+          <input type="text" id="client-name" required placeholder="Ex: Diogo Silva" class="w-full bg-clandestina-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-clandestina-gold">
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-gray-300 font-semibold mb-1">Telemóvel</label>
+            <input type="tel" id="client-phone" required placeholder="912 345 678" class="w-full bg-clandestina-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-clandestina-gold">
+          </div>
+          <div>
+            <label class="block text-gray-300 font-semibold mb-1">Serviço</label>
+            <select id="client-service" class="w-full bg-clandestina-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-clandestina-gold">
+              <option value="Barba">Barba (14 €)</option>
+              <option value="Corte Curto">Corte Curto (15 €)</option>
+              <option value="Corte Longo">Corte Longo (20 €)</option>
+              <option value="Barba & Corte" selected>Barba & Corte (24 €)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-gray-300 font-semibold mb-1">Dia Preferencial</label>
+            <input type="date" id="client-date" required class="w-full bg-clandestina-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-clandestina-gold">
+          </div>
+          <div>
+            <label class="block text-gray-300 font-semibold mb-1">Hora Desejada</label>
+            <input type="time" id="client-time" required class="w-full bg-clandestina-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-clandestina-gold">
+          </div>
+        </div>
+
+        <div class="pt-4">
+          <button type="submit" class="w-full py-3.5 bg-clandestina-gold hover:bg-clandestina-goldLight text-black font-bold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-clandestina-gold/20">
+            <i class="fa-brands fa-whatsapp text-base"></i>
+            <span>Confirmar via WhatsApp / Mensagem</span>
+          </button>
+          
+          <a href="https://linktr.ee/Barbeariaclandestina" target="_blank" class="block text-center text-[11px] text-clandestina-muted hover:text-white mt-3 underline">
+            Ou se preferires, acede ao link de agendamento online oficial
+          </a>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script>
+    // Menu mobile toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Funções do Modal de Marcação
+    const modal = document.getElementById('booking-modal');
+    const serviceSelect = document.getElementById('client-service');
+
+    function openBookingModal(serviceName = 'Geral') {
+      if (serviceName && serviceName !== 'Geral') {
+        for (let i = 0; i < serviceSelect.options.length; i++) {
+          if (serviceSelect.options[i].value.includes(serviceName)) {
+            serviceSelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeBookingModal() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Fechar ao clicar fora do modal
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeBookingModal();
+    });
+
+    // Animações ao scroll
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -6% 0px'
+    });
+
+    revealElements.forEach((element) => {
+      revealObserver.observe(element);
+    });
+
+    // Submissão do agendamento (Gera link formatado de WhatsApp)
+    function handleBookingSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('client-name').value;
+      const phone = document.getElementById('client-phone').value;
+      const service = document.getElementById('client-service').value;
+      const date = document.getElementById('client-date').value;
+      const time = document.getElementById('client-time').value;
+
+      const message = `Olá Barbearia Clandestina! Gostaria de agendar um horário:%0A%0A👤 *Nome:* ${encodeURIComponent(name)}%0A📱 *Contacto:* ${encodeURIComponent(phone)}%0A✂️ *Serviço:* ${encodeURIComponent(service)}%0A📅 *Data:* ${encodeURIComponent(date)}%0A⏰ *Hora:* ${encodeURIComponent(time)}%0A%0AFico a aguardar a vossa confirmação. Obrigado!`;
+
+      // Se a barbearia tiver número WhatsApp, basta colocar o número aqui (ex: 351912345678)
+      // Caso contrário, abre diretamente com a mensagem pré-preenchida
+      window.open(`https://api.whatsapp.com/send?text=${message}`, '_blank');
+      closeBookingModal();
+    }
+  </script>
+</body>
+</html>
