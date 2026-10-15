@@ -868,7 +868,7 @@
     const bookingModal = document.getElementById('booking-modal');
     const bServiceSelect = document.getElementById('b-service');
 
-    function openBookingModal(service = 'Geral') {
+    function openBookingModal(service = 'Geral', barber = '') {
       if (service && service !== 'Geral' && bServiceSelect) {
         const query = service.toLowerCase().trim();
         for (let i = 0; i < bServiceSelect.options.length; i++) {
@@ -877,6 +877,27 @@
             bServiceSelect.selectedIndex = i;
             break;
           }
+        }
+      }
+
+      const bBarberSelect = document.getElementById('b-barber');
+      if (bBarberSelect) {
+        if (barber) {
+          const queryB = barber.toLowerCase().trim();
+          let matched = false;
+          for (let i = 0; i < bBarberSelect.options.length; i++) {
+            const optVal = bBarberSelect.options[i].value.toLowerCase();
+            if (optVal === queryB || optVal.includes(queryB) || queryB.includes(optVal)) {
+              bBarberSelect.selectedIndex = i;
+              matched = true;
+              break;
+            }
+          }
+          if (!matched) {
+            bBarberSelect.selectedIndex = 0;
+          }
+        } else {
+          bBarberSelect.selectedIndex = 0;
         }
       }
 
@@ -903,6 +924,9 @@
       bookingModal.classList.add('hidden');
       bookingModal.classList.remove('flex');
     }
+
+    window.openBookingModal = openBookingModal;
+    window.closeBookingModal = closeBookingModal;
 
     bookingModal.addEventListener('click', (e) => {
       if (e.target === bookingModal) closeBookingModal();
@@ -934,14 +958,22 @@
       const name = document.getElementById('b-name').value;
       const phone = document.getElementById('b-phone').value;
       const service = document.getElementById('b-service').value;
+      const barberEl = document.getElementById('b-barber');
+      const barber = barberEl ? barberEl.value : 'Sem preferência (Qualquer Cadeira)';
       const date = document.getElementById('b-date').value;
       const time = document.getElementById('b-time').value;
 
-      const msg = `Olá Barbearia Clandestina! Gostaria de agendar:%0A👤 Nome: ${encodeURIComponent(name)}%0A📱 Contacto: ${encodeURIComponent(phone)}%0A✂️ Serviço: ${encodeURIComponent(service)}%0A📅 Data: ${encodeURIComponent(date)}%0A⏰ Hora: ${encodeURIComponent(time)}`;
+      let msg = `Olá Barbearia Clandestina! Gostaria de agendar:%0A👤 Nome: ${encodeURIComponent(name)}%0A📱 Contacto: ${encodeURIComponent(phone)}%0A✂️ Serviço: ${encodeURIComponent(service)}`;
+      if (barber) {
+        msg += `%0A💈 Barbeiro: ${encodeURIComponent(barber)}`;
+      }
+      msg += `%0A📅 Data: ${encodeURIComponent(date)}%0A⏰ Hora: ${encodeURIComponent(time)}`;
 
       window.open(`https://api.whatsapp.com/send?text=${msg}`, '_blank');
       closeBookingModal();
     }
+
+    window.handleBooking = handleBooking;
 
     /* ========================================================
        FEEDBACK VISUAL TÁTIL DO ÁUDIO (EQUALIZADOR & LÂMINA)
@@ -977,7 +1009,7 @@
     const SCRAPE_MIN_INTERVAL = 130;       // ms de intervalo mínimo entre cortes
 
     // Secções e marcadores
-    const sectionIds = ['home', 'quemsomos', 'servicos', 'cartao', 'galeria', 'feedbacks', 'contacto'];
+    const sectionIds = ['home', 'quemsomos', 'equipa', 'servicos', 'cartao', 'galeria', 'feedbacks', 'contacto'];
     const milestones = document.querySelectorAll('.scroll-milestone');
     let currentActiveSection = 'home';
     const visitedSections = new Set(['home']);

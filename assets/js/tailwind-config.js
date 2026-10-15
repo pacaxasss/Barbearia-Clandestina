@@ -32,16 +32,11 @@ tailwind.config = {
         royal: ['"Royal King"', '"Bebas Neue"', 'serif'],
       },
       animation: {
-        'barber-pole': 'barberPole 2s linear infinite',
         'glitch': 'glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both',
         'vibrate-tool': 'vibrate 0.1s linear infinite',
         'flicker': 'filmFlicker 0.15s infinite',
       },
       keyframes: {
-        barberPole: {
-          '0%': { backgroundPosition: '0 0' },
-          '100%': { backgroundPosition: '0 40px' },
-        },
         vibrate: {
           '0%, 100%': { transform: 'translate(0, 0)' },
           '25%': { transform: 'translate(1px, -1px)' },
